@@ -27,6 +27,11 @@ const appRoutes: Routes = [
         loadChildren: './main/apps/apps.module#AppsModule'
     },
     {
+        path        : 'analytics',
+        loadChildren: './analytics/analytics.module#AnalyticsDashboardModule'
+
+    },
+    {
         path        : 'auth',
         loadChildren: './authentication/login/login.module#LoginModule'
     },
