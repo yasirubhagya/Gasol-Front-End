@@ -27,10 +27,6 @@ const appRoutes: Routes = [
         loadChildren: './main/apps/apps.module#AppsModule'
     },
     {
-        path        : 'pages',
-        loadChildren: './main/pages/pages.module#PagesModule'
-    },
-    {
         path        : 'auth',
         loadChildren: './authentication/login/login.module#LoginModule'
     },
@@ -84,7 +80,6 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-
         AppStoreModule
     ],
     bootstrap   : [
