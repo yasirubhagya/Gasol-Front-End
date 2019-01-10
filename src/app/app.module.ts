@@ -31,6 +31,10 @@ const appRoutes: Routes = [
         loadChildren: './authentication/login/login.module#LoginModule'
     },
     {
+        path        : 'reg',
+        loadChildren: './authentication/register/register.module#RegisterModule'
+    },
+    {
         path        : 'ui',
         loadChildren: './main/ui/ui.module#UIModule'
     },
