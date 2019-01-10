@@ -32,6 +32,11 @@ const appRoutes: Routes = [
 
     },
     {
+        path        : 'project',
+        loadChildren: './project/project.module#ProjectDashboardModule'
+
+    },
+    {
         path        : 'auth',
         loadChildren: './authentication/login/login.module#LoginModule'
     },

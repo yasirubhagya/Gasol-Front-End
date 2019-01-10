@@ -6,7 +6,7 @@ export const navigation: FuseNavigation[] = [
         title: 'Analytics',
         type : 'item',
         icon : 'timeline',
-        url  : '/apps/dashboards/analytics'
+        url  : '/analytics/'
     },
 
     {
@@ -14,7 +14,7 @@ export const navigation: FuseNavigation[] = [
         title: 'Project',
         type : 'item',
         icon : 'send',
-        url  : '/apps/dashboards/project'
+        url  : '/project/'
     },
 
     {
