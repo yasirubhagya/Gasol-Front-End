@@ -20,6 +20,7 @@ import { AppComponent } from 'app/app.component';
 import { AppStoreModule } from 'app/store/store.module';
 import { LayoutModule } from 'app/layout/layout.module';
 
+
 const appRoutes: Routes = [
     {
         path        : 'apps',
@@ -28,6 +29,10 @@ const appRoutes: Routes = [
     {
         path        : 'pages',
         loadChildren: './main/pages/pages.module#PagesModule'
+    },
+    {
+        path        : 'auth',
+        loadChildren: './authentication/login/login.module#LoginModule'
     },
     {
         path        : 'ui',
@@ -43,7 +48,7 @@ const appRoutes: Routes = [
     },
     {
         path      : '**',
-        redirectTo: 'apps/dashboards/analytics'
+        redirectTo: 'auth/login'
     }
 ];
 
@@ -79,6 +84,7 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
+
         AppStoreModule
     ],
     bootstrap   : [
