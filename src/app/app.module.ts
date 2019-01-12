@@ -14,18 +14,13 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
-
+import {AppComponent} from 'app/app.component';
 import { FakeDbService } from 'app/fake-db/fake-db.service';
-import { AppComponent } from 'app/app.component';
-import { AppStoreModule } from 'app/store/store.module';
 import { LayoutModule } from 'app/layout/layout.module';
 
 
 const appRoutes: Routes = [
-    {
-        path        : 'apps',
-        loadChildren: './main/apps/apps.module#AppsModule'
-    },
+   
     {
         path        : 'analytics',
         loadChildren: './analytics/analytics.module#AnalyticsDashboardModule'
@@ -37,24 +32,42 @@ const appRoutes: Routes = [
 
     },
     {
+        path        : 'forms',
+        loadChildren: './forms/forms.module#FormsModule'
+
+    },
+    {
+        path        : 'calendar',
+        loadChildren: './calendar/calendar.module#CalendarModule'
+
+    },
+    {
+        path        : 'coming-soon',
+        loadChildren: './coming-soon/coming-soon.module#ComingSoonModule'
+
+    },
+    {
+        path        : 'faq',
+        loadChildren: './faq/faq.module#FaqModule'
+
+    },
+    {
+        path        : 'knowledge-base',
+        loadChildren: './knowledge-base/knowledge-base.module#KnowledgeBaseModule'
+
+    },
+    {
+        path        : 'change-log',
+        loadChildren: './changelog/changelog.module#changelogModule'
+
+    },
+    {
         path        : 'auth',
         loadChildren: './authentication/login/login.module#LoginModule'
     },
     {
         path        : 'reg',
         loadChildren: './authentication/register/register.module#RegisterModule'
-    },
-    {
-        path        : 'ui',
-        loadChildren: './main/ui/ui.module#UIModule'
-    },
-    {
-        path        : 'documentation',
-        loadChildren: './main/documentation/documentation.module#DocumentationModule'
-    },
-    {
-        path        : 'angular-material-elements',
-        loadChildren: './main/angular-material-elements/angular-material-elements.module#AngularMaterialElementsModule'
     },
     {
         path      : '**',
@@ -94,7 +107,7 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        AppStoreModule
+        
     ],
     bootstrap   : [
         AppComponent

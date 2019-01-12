@@ -18,11 +18,11 @@ export const navigation: FuseNavigation[] = [
     },
 
     {
-        id   : 'form',
-        title: 'Form',
+        id   : 'forms',
+        title: 'Forms',
         type : 'item',
         icon : 'description',
-        url  : '/apps/dashboards/form'
+        url  : '/forms/'
     },
 
     {
@@ -31,7 +31,7 @@ export const navigation: FuseNavigation[] = [
         translate: 'NAV.CALENDAR',
         type     : 'item',
         icon     : 'today',
-        url      : '/apps/calendar'
+        url      : '/calendar/'
     },
     
     {
@@ -39,7 +39,7 @@ export const navigation: FuseNavigation[] = [
         title: 'Coming Soon',
         type : 'item',
         icon : 'alarm',
-        url  : '/pages/coming-soon'
+        url  : '/coming-soon/'
     },
     
     {
@@ -47,7 +47,7 @@ export const navigation: FuseNavigation[] = [
         title: 'Faq',
         type : 'item',
         icon : 'help',
-        url  : '/pages/faq'
+        url  : '/faq/'
     },
 
     {
@@ -55,7 +55,7 @@ export const navigation: FuseNavigation[] = [
         title: 'Knowledge-base',
         type : 'item',
         icon : 'import_contacts',
-        url  : '/pages/knowledge-base'
+        url  : '/knowledge-base/'
     },
 
     {
@@ -63,7 +63,7 @@ export const navigation: FuseNavigation[] = [
         title: 'Change-log',
         type : 'item',
         icon : 'update',
-        url  : '/documentation/change-log'
+        url  : '/change-log/'
     }
 
 ];
