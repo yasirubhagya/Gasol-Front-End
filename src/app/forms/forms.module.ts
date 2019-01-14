@@ -5,14 +5,36 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/ma
 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseCountdownModule } from '@fuse/components';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { formsComponent } from 'app/forms/forms.component';
 
+
+  
+
 const routes = [
+   
     {
-        path     : '**',
-        component: formsComponent
+        path        : 'datatable',
+        loadChildren: './components-third-party/components-third-party.module#ComponentsThirdPartyModule'
+
+    },
+    {
+        path        : 'employee',
+        loadChildren: './employee/employee.module#EmployeeModule'
+
     }
+    ,{
+        path        : 'cheques',
+        loadChildren: './cheques/cheques.module#ChequesModule'
+
+    },
+    {
+        path        : 'meterreadings',
+        loadChildren: './meterreadings/meterreadings.module#MeterreadingsModule'
+
+    }
+
+    
 ];
 
 @NgModule({
@@ -21,13 +43,12 @@ const routes = [
     ],
     imports     : [
         RouterModule.forChild(routes),
-
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
-
         FuseSharedModule,
-        FuseCountdownModule
+        NgxDatatableModule,
+        FuseCountdownModule   
     ]
 })
 export class FormsModule

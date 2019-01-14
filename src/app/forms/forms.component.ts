@@ -14,12 +14,7 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class formsComponent implements OnInit, OnDestroy
 {
-    comingSoonForm: FormGroup;
-    comingSoonFormErrors: any;
-
-    // Private
-    private _unsubscribeAll: Subject<any>;
-
+    
     /**
      * Constructor
      *
@@ -32,30 +27,13 @@ export class formsComponent implements OnInit, OnDestroy
     )
     {
         // Configure the layout
-        this._fuseConfigService.config = {
-            layout: {
-                navbar   : {
-                    hidden: true
-                },
-                toolbar  : {
-                    hidden: true
-                },
-                footer   : {
-                    hidden: true
-                },
-                sidepanel: {
-                    hidden: true
-                }
-            }
-        };
+        
 
         // Set the defaults
-        this.comingSoonFormErrors = {
-            email: {}
-        };
+       
 
         // Set the private defaults
-        this._unsubscribeAll = new Subject();
+      
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -67,15 +45,9 @@ export class formsComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.comingSoonForm = this._formBuilder.group({
-            email: ['', [Validators.required, Validators.email]]
-        });
+        
 
-        this.comingSoonForm.valueChanges
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(() => {
-                this.onRegisterFormValuesChanged();
-            });
+        
     }
 
     /**
@@ -84,8 +56,7 @@ export class formsComponent implements OnInit, OnDestroy
     ngOnDestroy(): void
     {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+       
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -95,25 +66,5 @@ export class formsComponent implements OnInit, OnDestroy
     /**
      * On form values changed
      */
-    onRegisterFormValuesChanged(): void
-    {
-        for ( const field in this.comingSoonFormErrors )
-        {
-            if ( !this.comingSoonFormErrors.hasOwnProperty(field) )
-            {
-                continue;
-            }
-
-            // Clear previous errors
-            this.comingSoonFormErrors[field] = {};
-
-            // Get the control
-            const control = this.comingSoonForm.get(field);
-
-            if ( control && control.dirty && !control.valid )
-            {
-                this.comingSoonFormErrors[field] = control.errors;
-            }
-        }
-    }
+   
 }
