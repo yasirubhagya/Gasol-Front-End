@@ -7,7 +7,7 @@ export class AnalyticsDashboardDb
                 '2015': [
                     {
                         label: 'Sales',
-                        data : [1.9, 3, 3.4, 2.2, 2.9, 3.9, 2.5, 3.8, 4.1, 3.8, 3.2, 2.9],
+                        data : [6, 3, 3.4, 2.2, 2.9, 3.9, 2.5, 3.8, 4.1, 3.8, 3.2, 2.9],
                         fill : 'start'
 
                     }

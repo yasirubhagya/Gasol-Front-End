@@ -14,7 +14,14 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class RegisterComponent implements OnInit, OnDestroy
 {
-    registerForm: FormGroup;
+  registerForm: FormGroup;
+
+    name: String;
+    username: String;
+    email: String;
+    password: String;
+    confirmPassword: String;
+
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -80,6 +87,10 @@ export class RegisterComponent implements OnInit, OnDestroy
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
+    hello(){
+        console.log(123);
+    }
+   
 }
 
 /**
