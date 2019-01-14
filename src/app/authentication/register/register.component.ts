@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators';
-
+import {AuthService} from '../../services/auth.service';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector   : 'register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy
     username: String;
     email: String;
     password: String;
-    confirmPassword: String;
+    passwordConfirm: String;
 
 
     // Private
@@ -28,7 +29,9 @@ export class RegisterComponent implements OnInit, OnDestroy
 
     constructor(
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private authService: AuthService,
+        private router: RouterModule
     )
     {
         // Configure the layout
@@ -87,10 +90,23 @@ export class RegisterComponent implements OnInit, OnDestroy
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-    hello(){
-        console.log(123);
+    transfer(){
+       const user = {
+           name: this.name,
+           email: this.email,
+           password: this.password
+       }
+//Registration
+       /* his.authService.registerUser(user).subscribe(data => {
+           if(data.success){
+                console.log('Registered')
+                this.router.navigate(['/login']);
+           }else{
+                console.log('Error')
+           }
+       }); */
+
     }
-   
 }
 
 /**
