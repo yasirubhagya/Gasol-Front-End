@@ -1,0 +1,73 @@
+<div class="mat-elevation-z8">
+    <mat-card>
+        <mat-card-title>
+
+            <button id="addnew" mat-raised-button>
+                <mat-icon>add</mat-icon>Create
+            </button>
+
+            <mat-form-field id="searchbar" class="search-form-field" floatLabel="never">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+
+
+        </mat-card-title>
+
+        <mat-card-content>
+            <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+                <!-- CustomerId Column -->
+                <ng-container matColumnDef="customerid">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>CustomerId</th>
+                    <td mat-cell *matCellDef="let row">{{row.customerid}}</td>
+                </ng-container>
+
+                <!-- FirstName Column -->
+                <ng-container matColumnDef="companyname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-form-field floatLabel="never">
+                            <input matInput placeholder="FirstName" [value]="row.companyname" [(ngModel)]="row.companyname">
+                        </mat-form-field>
+                    </td>
+                </ng-container>
+
+                <!-- LastName Column -->
+                <ng-container matColumnDef="threshold">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Threshold</th>
+                    <td mat-cell *matCellDef="let row">{{row.threshold}}</td>
+                </ng-container>
+
+                <!-- dateofbirth Column -->
+                <ng-container matColumnDef="phoneno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>DateOfBirth</th>
+                    <td mat-cell *matCellDef="let row">{{row.phoneno}}</td>
+                </ng-container>
+
+                <!-- phoneno Column -->
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+                    <td mat-cell *matCellDef="let row">{{row.address}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button>
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn">
+                            <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="25"
+                [pageSizeOptions]="[10,25, 50, 100, 250]">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>
