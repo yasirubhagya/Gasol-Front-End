@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {AuthService} from '../../services/auth.service';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector   : 'login',
@@ -14,6 +15,9 @@ export class LoginComponent implements OnInit
 {
     loginForm: FormGroup;
 
+    email: String;
+    password: String;
+
     /**
      * Constructor
      *
@@ -22,7 +26,9 @@ export class LoginComponent implements OnInit
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private authService: AuthService,
+        private router: RouterModule
     )
     {
         // Configure the layout
@@ -57,5 +63,20 @@ export class LoginComponent implements OnInit
             email   : ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
+    }
+
+    check(){
+        const user = {
+            email: this.email,
+            password: this.password
+        }
+
+        this.authService.authenticateUser(user).subscribe(data =>{
+            if(data.success){
+                console.log(data.msg)
+            }else{
+                console.log(data.msg)
+            }
+        })
     }
 }
