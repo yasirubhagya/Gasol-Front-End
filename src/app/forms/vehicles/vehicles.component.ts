@@ -1,38 +1,37 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import {DbService} from '../../services/db.service';
+import { DbService } from '../../services/db.service'
 
-interface FuelTypeTableItem {
-  FuelID:Number;
-  Name: string;
-  Commision:Number;
-  Price: Number;
+interface VehiclesTableItem{
+  VehicleNumber:String,
+  CompanyID:Number,
+  FuelID:Number
 }
 
 @Component({
-  selector: 'fueltype-table',
-  templateUrl: './fueltype.component.html',
-  styleUrls: ['./fueltype.component.scss']
+  selector: 'vehicle-table',
+  templateUrl: './vehicles.component.html',
+  styleUrls: ['./vehicles.component.scss']
 })
-export class FuelTypeComponent implements OnInit {
+export class VehiclesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<FuelTypeTableItem>;
+  dataSource: MatTableDataSource<VehiclesTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['FuelID', 'Name', 'Commision','Price','actions'];
+  displayedColumns = ['VehicleNumber', 'CompanyID', 'FuelID','actions'];
 
-  tempFuelItem: FuelTypeTableItem;
+  tempVehicleItem: VehiclesTableItem;
   isexpanded = false;
   updateMod = false;
 
   constructor(private dbconn: DbService) {
     // Create 100 users
-    let EXAMPLE_DATA: FuelTypeTableItem[] = [];
-    this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+    let EXAMPLE_DATA: VehiclesTableItem[] = [];
+    this.tempVehicleItem = { VehicleNumber: '', CompanyID: 0, FuelID: 0 };
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
-    this.dbconn.getFuelTypes().subscribe(res => {
+    this.dbconn.getVehicles().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource._updateChangeSubscription();
 
@@ -54,12 +53,12 @@ export class FuelTypeComponent implements OnInit {
     }
   }
 
-  insertItem(fuelItem: FuelTypeTableItem) {
-    this.dbconn.insertFuelTypes(fuelItem).subscribe(res => {
-      this.dbconn.getFuelTypes().subscribe(res => {
+  insertItem(cusItem: VehiclesTableItem) {
+    this.dbconn.insertVehicles(cusItem).subscribe(res => {
+      this.dbconn.getVehicles().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+        this.tempVehicleItem = { VehicleNumber: '', CompanyID: 0, FuelID: 0 };
         this.isexpanded = false;
       });
     });
@@ -67,19 +66,19 @@ export class FuelTypeComponent implements OnInit {
 
   }
 
-  enableUpdateMod(dataRow: FuelTypeTableItem) {
-    this.tempFuelItem = { FuelID: dataRow.FuelID, Name: dataRow.Name, Commision: dataRow.Commision,Price:dataRow.Price};
+  enableUpdateMod(dataRow: VehiclesTableItem) {
+    this.tempVehicleItem = { VehicleNumber: dataRow.VehicleNumber, CompanyID: dataRow.CompanyID, FuelID: dataRow.FuelID };
     this.updateMod = true;
     this.isexpanded = true;
   }
 
-  updateItem(dataRow: FuelTypeTableItem) {
+  updateItem(dataRow: VehiclesTableItem) {
 
-    this.dbconn.updateFuelTypes(dataRow).subscribe(res => {
-      this.dbconn.getFuelTypes().subscribe(res => {
+    this.dbconn.updateVehicles(dataRow).subscribe(res => {
+      this.dbconn.getVehicles().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+        this.tempVehicleItem = { VehicleNumber: '', CompanyID: 0, FuelID: 0 };
         this.isexpanded = false;
         this.updateMod = false;
       });
@@ -88,12 +87,12 @@ export class FuelTypeComponent implements OnInit {
     console.log(dataRow);
   }
 
-  deleteItem(dataRow: FuelTypeTableItem) {
-    this.dbconn.deleteFuelTypes(dataRow).subscribe(res => {
-      this.dbconn.getFuelTypes().subscribe(res => {
+  deleteItem(dataRow: VehiclesTableItem) {
+    this.dbconn.deleteVehicles(dataRow).subscribe(res => {
+      this.dbconn.getVehicles().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+        this.tempVehicleItem = { VehicleNumber: '', CompanyID: 0, FuelID: 0 };
         this.isexpanded = false;
       });
     });
@@ -101,7 +100,7 @@ export class FuelTypeComponent implements OnInit {
   }
 
   cancel() {
-    this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+    this.tempVehicleItem = { VehicleNumber: '', CompanyID: 0, FuelID: 0 };
     this.isexpanded = false;
     this.updateMod = false;
   }
@@ -109,4 +108,3 @@ export class FuelTypeComponent implements OnInit {
 
 
 }
-

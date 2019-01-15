@@ -8,33 +8,27 @@
                     <mat-expansion-panel [(expanded)]="isexpanded">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Customers data
+                                Vehicles data
                             </mat-panel-title>
                             <mat-panel-description>
                                 add/edit data
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <mat-form-field>
-                            <input matInput [disabled] ="updateMod" placeholder="CustomerID" [(ngModel)]="tempCustomerItem.CustomerID">
+                            <input matInput [disabled] ="updateMod" placeholder="Vehicle Number" [(ngModel)]="tempVehicleItem.VehicleNumber">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="CompanyName" [(ngModel)]="tempCustomerItem.CompanyName">
+                            <input matInput placeholder="Company ID" [(ngModel)]="tempVehicleItem.CompanyID">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Threshold" [(ngModel)]="tempCustomerItem.Threshold">
+                            <input matInput placeholder="Fuel ID" [(ngModel)]="tempVehicleItem.FuelID">
                         </mat-form-field>
     
-                        <mat-form-field>
-                            <input matInput  placeholder="PhoneNumber" [(ngModel)]="tempCustomerItem.PhoneNumber">
-                        </mat-form-field>
-                        <mat-form-field>
-                            <input matInput placeholder="Address" [(ngModel)]="tempCustomerItem.Address">
-                        </mat-form-field>
                         
                         <mat-action-row>
                             <button mat-button color="error" (click)="cancel()">Cancel</button>
-                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempCustomerItem)">Update</button>
-                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempCustomerItem)">Insert</button>
+                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempVehicleItem)">Update</button>
+                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempVehicleItem)">Insert</button>
                         </mat-action-row>
                     </mat-expansion-panel>
                 </mat-accordion>
@@ -44,35 +38,23 @@
     
                 <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
                     <!-- Id Column -->
-                    <ng-container matColumnDef="CustomerID">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>CustomerID</th>
-                        <td mat-cell *matCellDef="let row">{{row.CustomerID}}</td>
+                    <ng-container matColumnDef="VehicleNumber">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vehicle Number</th>
+                        <td mat-cell *matCellDef="let row">{{row.VehicleNumber}}</td>
                     </ng-container>
     
                     <!-- FirstName Column -->
-                    <ng-container matColumnDef="CompanyName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>CompanyName</th>
+                    <ng-container matColumnDef="CompanyID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Company ID</th>
                         <td mat-cell *matCellDef="let row">
-                            {{row.CompanyName}}
+                            {{row.CompanyID}}
                         </td>
                     </ng-container>
     
                     <!-- LastName Column -->
-                    <ng-container matColumnDef="Threshold">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Threshold</th>
-                        <td mat-cell *matCellDef="let row">{{row.Threshold}}</td>
-                    </ng-container>
-    
-                    <!-- dateofbirth Column -->
-                    <ng-container matColumnDef="PhoneNumber">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PhoneNumber</th>
-                        <td mat-cell *matCellDef="let row">{{row.PhoneNumber}}</td>
-                    </ng-container>
-    
-                    <!-- phoneno Column -->
-                    <ng-container matColumnDef="Address">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-                        <td mat-cell *matCellDef="let row">{{row.Address}}</td>
+                    <ng-container matColumnDef="FuelID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fuel ID</th>
+                        <td mat-cell *matCellDef="let row">{{row.FuelID}}</td>
                     </ng-container>
     
                     <ng-container matColumnDef="actions">

@@ -16,6 +16,8 @@ import { formsComponent } from './forms.component';
 import {EmployeesComponent} from './employees/employees.component';
 import {CustomersComponent} from './customers/customers.component';
 import {FuelTypeComponent} from './fueltype/fueltype.component';
+import {VehiclesComponent} from './vehicles/vehicles.component';
+import {TankComponent} from './tanks/tank.component';
 
 const routes = [
     {
@@ -33,6 +35,8 @@ const routes = [
         EmployeesComponent,
         CustomersComponent,
         FuelTypeComponent,
+        VehiclesComponent,
+        TankComponent
     ],
     imports     : [
         RouterModule.forChild(routes),
