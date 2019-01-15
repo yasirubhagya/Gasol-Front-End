@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MatButtonModule, MatFormFieldModule, MatInputModule,MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatCardModule,MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, 
+         MatInputModule,MatTableModule, 
+         MatPaginatorModule, MatSortModule,
+         MatIconModule,MatCardModule,
+         MatExpansionModule,MatSelectModule,
+         MatDatepickerModule
+        } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseCountdownModule } from '@fuse/components';
@@ -42,7 +48,9 @@ const routes = [
         MatSortModule,
         MatIconModule,
         MatCardModule,
-        MatToolbarModule
+        MatExpansionModule,
+        MatSelectModule,
+        MatDatepickerModule
     ]
 })
 export class FormsModule
