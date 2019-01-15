@@ -18,7 +18,7 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-form-field>
-                        <input matInput placeholder="NIC" [(ngModel)]="tempEmpItem.NIC">
+                        <input matInput [disabled] ="updateMod" placeholder="NIC" [(ngModel)]="tempEmpItem.NIC">
                     </mat-form-field>
                     <mat-form-field>
                         <input matInput placeholder="First name" [(ngModel)]="tempEmpItem.FName">
