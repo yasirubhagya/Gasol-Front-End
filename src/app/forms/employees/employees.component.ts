@@ -61,7 +61,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   enableUpdateMod(dataRow: EmployeesTableItem) {
-    this.tempEmpItem = dataRow;
+    this.tempEmpItem = { NIC: dataRow.NIC, FName: dataRow.FName, LName: dataRow.LName, DOB: dataRow.DOB, PhoneNumber: dataRow.PhoneNumber, Gender: dataRow.Gender, Address: dataRow.Address, LevelId: dataRow.LevelId };
     this.updateMod = true;
     this.isexpanded = true;
   }
