@@ -31,6 +31,6 @@ export class AuthService {
   authenticateUser(user:USER){
     let headers = new Headers();
     headers.append('Content-Type','application.json');
-    return this.http.post<USER>('http://localhost:3000/',user);
+    return this.http.post<USER>('https://gasoldb.herokuapp.com/api/auth/login',user);
   }
 }
