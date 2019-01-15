@@ -52,7 +52,7 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-action-row>
-                        <button mat-button color="error" (click)="isexpanded=false">Cancel</button>
+                        <button mat-button color="error" (click)="cancel()">Cancel</button>
                         <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempEmpItem)">Update</button>
                         <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempEmpItem)">Insert</button>
                     </mat-action-row>
