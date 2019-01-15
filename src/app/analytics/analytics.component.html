@@ -51,20 +51,20 @@
                  fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
 
                 <!-- Widget 2 -->
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
+                <div class="widget" fxFlex="100" fxFlex.gt-sm="100">
 
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
 
                         <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
 
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Conversion</div>
-                                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
+                                <div class="h3 secondary-text">Tank Fuel Gauge</div>
+                                <!-- <div class="font-size-54 font-weight-300 line-height-1 mt-8">
                                     {{widgets.widget2.conversion.value}}
-                                </div>
+                                </div> -->
                             </div>
 
-                            <div class="py-4 font-size-16" fxLayout="row" fxLayoutAlign="start center">
+                            <!-- <div class="py-4 font-size-16" fxLayout="row" fxLayoutAlign="start center">
                                 <div fxFlex="row" fxLayoutAlign="start center" class="green-fg"
                                      *ngIf="widgets.widget2.conversion.ofTarget > 0">
                                     <mat-icon class="green-fg mr-4">trending_up</mat-icon>
@@ -76,11 +76,11 @@
                                     <span>{{widgets.widget2.conversion.ofTarget}}%</span>
                                 </div>
                                 <div class="ml-4 text-nowrap">of target</div>
-                            </div>
+                            </div> -->
 
                         </div>
 
-                        <div class="h-96 w-100-p">
+                        <div class="position-relative h-96 w-100-p">
                             <canvas baseChart
                                     [datasets]="widgets.widget2.datasets"
                                     [labels]="widgets.widget2.labels"
@@ -96,7 +96,7 @@
                 <!-- / Widget 2 -->
 
                 <!-- Widget 3 -->
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="34">
+                <!-- <div class="widget" fxFlex="100" fxFlex.gt-sm="34">
 
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
 
@@ -137,11 +137,11 @@
 
                     </div>
 
-                </div>
+                </div> -->
                 <!-- / Widget 3 -->
 
                 <!-- Widget 4 -->
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
+                <!-- <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
 
                     <div class="fuse-card auto-width">
 
@@ -182,7 +182,7 @@
 
                     </div>
 
-                </div>
+                </div> -->
                 <!-- / Widget 4 -->
 
             </div>
@@ -197,7 +197,7 @@
                 <div class="position-relative p-24"
                      fxLayout="row" fxLayoutAlign="space-between center">
                     <div fxLayout="column" fxLayoutAlign="start start">
-                        <span class="h2">Oil and other items</span>
+                        <span class="h2">Lubricants</span>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
@@ -268,13 +268,13 @@
                 <div class="mb-48" [ngClass.lt-lg]="'mr-32'" [ngClass.xs]="'mr-0'">
 
                     <div class="pb-24 font-size-18 font-weight-300">
-                        What are your top items?
+                        What are your top items (On Sale)?
                     </div>
 
                     <div class="fuse-card">
 
                         <div class="p-16">
-                            <div class="h1 font-weight-300">Top three items</div>
+                            <div class="h1 font-weight-300">Top Two Items</div>
                         </div>
 
                         <div class="h-200">
@@ -296,7 +296,7 @@
 
                                 <div fxLayout="row" fxLayoutAlign="center center">
                                     <mat-icon class="s-18 pr-4 red-fg"
-                                              *ngIf="device.change < 0">
+                                              *ngIf="device.change > 0">
                                         arrow_downward
                                     </mat-icon>
 
@@ -317,7 +317,7 @@
 
                         <div class="card-divider mb-0"></div>
 
-                        <div class="px-16" fxLayout="row" fxLayoutAlign="space-between center">
+                        <!-- <div class="px-16" fxLayout="row" fxLayoutAlign="space-between center">
                             <mat-form-field>
                                 <mat-select class="simplified" value="7days">
                                     <mat-option value="today">Today</mat-option>
@@ -329,7 +329,7 @@
                             </mat-form-field>
 
                             <button mat-button color="accent">OVERVIEW</button>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -442,7 +442,7 @@
                 <div class="mb-48" [ngClass.lt-lg]="'mr-32'" [ngClass.xs]="'mr-0'">
 
                     <div class="pb-24 font-size-18 font-weight-300" [ngClass.lt-lg]="'pt-0'">
-                        What are my top itmes?
+                        What are my top itmes (On Price)?
                     </div>
 
                     <div class="fuse-card">
@@ -450,7 +450,7 @@
                         <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center">
                             <div class="h1 pr-16">Top itmes</div>
 
-                            <div>
+                            <!-- <div>
                                 <button mat-icon-button [matMenuTriggerFor]="card20Menu" aria-label="more">
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
@@ -469,15 +469,15 @@
                                         <span>Show CPC</span>
                                     </button>
                                 </mat-menu>
-                            </div>
+                            </div> -->
                         </div>
 
                         <table class="simple clickable">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th class="text-right">Clicks</th>
-                                    <th class="text-right">Conv</th>
+                                    <th class="text-right">Price (Rs.)</th>
+                                    <th class="text-right">Commission (Rs.)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -491,9 +491,9 @@
 
                         <div class="card-divider full-width"></div>
 
-                        <div class="p-8 pt-16" fxLayout="row" fxLayoutAlign="start center">
+                       <!--  <div class="p-8 pt-16" fxLayout="row" fxLayoutAlign="start center">
                             <button mat-button color="accent">GO TO CAMPAIGNS</button>
-                        </div>
+                        </div> -->
 
                     </div>
 

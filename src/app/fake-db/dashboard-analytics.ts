@@ -7,7 +7,7 @@ export class AnalyticsDashboardDb
                 '2015': [
                     {
                         label: 'Sales',
-                        data : [6, 3, 3.4, 2.2, 2.9, 3.9, 2.5, 3.8, 4.1, 3.8, 3.2, 2.9],
+                        data : [4, 3, 3.4, 2.2, 2.9, 3.9, 2.5],
                         fill : 'start'
 
                     }
@@ -15,7 +15,7 @@ export class AnalyticsDashboardDb
                 '2016': [
                     {
                         label: 'Sales',
-                        data : [2.2, 2.9, 3.9, 2.5, 3.8, 3.2, 2.9, 1.9, 3, 3.4, 4.1, 3.8],
+                        data : [2.2, 2.9, 3.9, 2.5, 3.8, 3.2, 2.9],
                         fill : 'start'
 
                     }
@@ -23,14 +23,14 @@ export class AnalyticsDashboardDb
                 '2017': [
                     {
                         label: 'Sales',
-                        data : [3.9, 2.5, 3.8, 4.1, 1.9, 3, 3.8, 3.2, 2.9, 3.4, 2.2, 2.9],
+                        data : [3.9, 2.5, 3.8, 4.1, 1.9, 3, 3.8],
                         fill : 'start'
 
                     }
                 ]
 
             },
-            labels   : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            labels   : ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
             colors   : [
                 {
                     borderColor              : '#42a5f5',
@@ -108,10 +108,10 @@ export class AnalyticsDashboardDb
             datasets  : [
                 {
                     label: 'Conversion',
-                    data : [221, 428, 492, 471, 413, 344, 294]
+                    data : [221, 428, 492, 471, 413]
                 }
             ],
-            labels    : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            labels    : ['Disel Tank 1', 'Disel Tank 2', 'Petrol (90C)', 'Petrol (95C)', 'Kerosene'],
             colors    : [
                 {
                     borderColor    : '#42a5f5',
@@ -135,12 +135,12 @@ export class AnalyticsDashboardDb
                 scales             : {
                     xAxes: [
                         {
-                            display: false
+                            display: true
                         }
                     ],
                     yAxes: [
                         {
-                            display: false,
+                            display: true,
                             ticks  : {
                                 min: 100,
                                 max: 500
@@ -268,46 +268,88 @@ export class AnalyticsDashboardDb
             datasets : {
                 'yesterday': [
                     {
-                        label: 'Visitors',
-                        data : [190, 300, 340, 220, 290, 390, 250, 380, 410, 380, 320, 290],
+                        label: 'Petrol (90C)',
+                        data : [7100, 5800, 4200, 6900, 7900, 4900, 5500],
                         fill : 'start'
 
                     },
                     {
-                        label: 'Page views',
-                        data : [2200, 2900, 3900, 2500, 3800, 3200, 2900, 1900, 3000, 3400, 4100, 3800],
+                        label: 'Disel',
+                        data : [3000, 3400, 4100, 3800, 2200, 3200, 2900],
                         fill : 'start'
+
+                    },
+                    {
+                        label: 'Petrol (95C)',
+                        data : [5200, 4900, 6900, 5500, 4800, 7200, 5900],
+                        fill : 'start'
+
+                    },
+                    {
+                        label: 'Kerosene',
+                        data : [1090, 3000, 3040, 2020, 2090, 3900, 2050],
+                        fill : 'start'
+
                     }
                 ],
                 'today'    : [
                     {
-                        label: 'Visitors',
-                        data : [410, 380, 320, 290, 190, 390, 250, 380, 300, 340, 220, 290],
+                        label: 'Petrol (90C)',
+                        data : [5200, 4900, 6900, 5500, 4800, 7200, 5900],
                         fill : 'start'
+
                     },
                     {
-                        label: 'Page Views',
-                        data : [3000, 3400, 4100, 3800, 2200, 3200, 2900, 1900, 2900, 3900, 2500, 3800],
+                        label: 'Disel',
+                        data : [1090, 3000, 3040, 2020, 2090, 3900, 2050],
+                        fill : 'start'
+
+                    },
+                    {
+                        label: 'Petrol (95C)',
+                        data : [7100, 5800, 4200, 6900, 7900, 4900, 5500],
+                        fill : 'start'
+
+                    },
+                    {
+                        label: 'Kerosene',
+                        data : [3000, 3400, 4100, 3800, 2200, 3200, 2900],
                         fill : 'start'
 
                     }
                 ]
             },
-            labels   : ['12am', '2am', '4am', '6am', '8am', '10am', '12pm', '2pm', '4pm', '6pm', '8pm', '10pm'],
+            labels   : ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
             colors   : [
                 {
-                    borderColor              : '#3949ab',
-                    backgroundColor          : '#3949ab',
-                    pointBackgroundColor     : '#3949ab',
-                    pointHoverBackgroundColor: '#3949ab',
+                    borderColor              : 'rgba(251, 13, 231, 0.6)',
+                    backgroundColor          : 'rgba(251, 13, 231, 0.01)',
+                    pointBackgroundColor     : 'rgba(251, 13, 231, 0.6)',
+                    pointHoverBackgroundColor: 'rgba(251, 13, 231, 0.6)',
                     pointBorderColor         : '#ffffff',
                     pointHoverBorderColor    : '#ffffff'
                 },
                 {
-                    borderColor              : 'rgba(30, 136, 229, 0.87)',
-                    backgroundColor          : 'rgba(30, 136, 229, 0.87)',
-                    pointBackgroundColor     : 'rgba(30, 136, 229, 0.87)',
-                    pointHoverBackgroundColor: 'rgba(30, 136, 229, 0.87)',
+                    borderColor              : 'rgba(30, 136, 229, 0.5)',
+                    backgroundColor          : 'rgba(30, 136, 229, 0.01)',
+                    pointBackgroundColor     : 'rgba(30, 136, 229, 0.5)',
+                    pointHoverBackgroundColor: 'rgba(30, 136, 229, 0.5)',
+                    pointBorderColor         : '#ffffff',
+                    pointHoverBorderColor    : '#ffffff'
+                },
+                {
+                    borderColor              : 'rgba(13, 251, 33, 0.71)',
+                    backgroundColor          : 'rgba(13, 251, 33, 0.01)',
+                    pointBackgroundColor     : 'rgba(13, 251, 33, 0.71)',
+                    pointHoverBackgroundColor: 'rgba(13, 251, 33, 0.71)',
+                    pointBorderColor         : '#ffffff',
+                    pointHoverBorderColor    : '#ffffff'
+                },
+                {
+                    borderColor              : 'rgba(163, 13, 0, 0.9)',
+                    backgroundColor          : 'rgba(163, 13, 0, 0.01)',
+                    pointBackgroundColor     : 'rgba(163, 13, 0, 0.9)',
+                    pointHoverBackgroundColor: 'rgba(163, 13, 0, 0.9)',
                     pointBorderColor         : '#ffffff',
                     pointHoverBorderColor    : '#ffffff'
                 }
@@ -348,12 +390,23 @@ export class AnalyticsDashboardDb
                             }
                         }
                     ],
-                    yAxes: [
+                   /*  yAxes: [
                         {
                             gridLines: {
                                 tickMarkLength: 16
                             },
                             ticks    : {
+                                stepSize: 1000
+                            }
+                        }
+                    ] */
+
+                    yAxes: [
+                        {
+                            display: true,
+                            ticks  : {
+                                min     : 0,
+                                max     : 8000,
                                 stepSize: 1000
                             }
                         }
@@ -502,22 +555,22 @@ export class AnalyticsDashboardDb
         },
         widget7: {
             scheme : {
-                domain: ['#4867d2', '#5c84f1', '#89a9f4']
+                domain: ['#4867d2', '#FB0D68', '#1DFB0D']
             },
             devices: [
                 {
-                    name  : 'Desktop',
-                    value : 92.8,
+                    name  : 'Petrol (95C)',
+                    value :52.8,
                     change: -0.6
                 },
                 {
-                    name  : 'Mobile',
+                    name  : 'Disel',
                     value : 6.1,
                     change: 0.7
                 },
                 {
-                    name  : 'Tablet',
-                    value : 1.1,
+                    name  : 'Other Items',
+                    value : 41.1,
                     change: 0.1
                 }
             ]
@@ -526,9 +579,9 @@ export class AnalyticsDashboardDb
             scheme : {
                 domain: ['#5c84f1']
             },
-            today  : '12,540',
+            today  : '59',
             change : {
-                value     : 321,
+                value     : 31,
                 percentage: 2.05
             },
             data   : [
@@ -537,64 +590,64 @@ export class AnalyticsDashboardDb
                     series: [
                         {
                             name : 'Jan 1',
-                            value: 540
+                            value: 54
                         },
                         {
                             name : 'Jan 2',
-                            value: 539
+                            value: 53
                         },
                         {
                             name : 'Jan 3',
-                            value: 538
+                            value: 57
                         },
                         {
                             name : 'Jan 4',
-                            value: 539
+                            value: 51
                         },
                         {
                             name : 'Jan 5',
-                            value: 540
+                            value: 54
                         },
                         {
                             name : 'Jan 6',
-                            value: 539
+                            value: 53
                         },
                         {
                             name : 'Jan 7',
-                            value: 540
+                            value: 54
                         }
                     ]
                 }
             ],
-            dataMin: 538,
-            dataMax: 541
+            dataMin: 50,
+            dataMax: 65
         },
         widget9: {
             rows: [
                 {
-                    title     : 'Holiday Travel',
-                    clicks    : 3621,
-                    conversion: 90
+                    title     : 'XHD 40 Desil Engine Oil',
+                    clicks    : 480.00,
+                    conversion: 54.65
                 },
                 {
-                    title     : 'Get Away Deals',
-                    clicks    : 703,
-                    conversion: 7
+                    title     : '2T Oil',
+                    clicks    : 448.00,
+                    conversion: 55.25
                 },
                 {
-                    title     : 'Airfare',
-                    clicks    : 532,
-                    conversion: 0
+                    title     : 'VG 68 Hydrolic Oil',
+                    clicks    : 475.00,
+                    conversion: 49.17
                 },
                 {
-                    title     : 'Vacation',
-                    clicks    : 201,
-                    conversion: 8
+                    title     : 'SAE 90 Gear Oil',
+                    clicks    : 610.00,
+                    conversion: 45.41
                 },
                 {
-                    title     : 'Hotels',
-                    clicks    : 94,
-                    conversion: 4
+                    title     : 'Supro (15WHO) 1L Oil',
+                    clicks    : 720.00,
+                    conversion: 65.00
                 }
             ]
         }

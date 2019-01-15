@@ -91,11 +91,11 @@ export class ProjectDashboardDb
                         'name'  : 'ceylinco',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 37000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 43000.00
                             }
                         ]
@@ -104,11 +104,11 @@ export class ProjectDashboardDb
                         'name'  : 'Plan Sri Lanka',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 27310.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 62690.00
                             }
                         ]
@@ -117,11 +117,11 @@ export class ProjectDashboardDb
                         'name'  : 'Sathosa',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 50000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 60000.00
                             }
                         ]
@@ -130,11 +130,11 @@ export class ProjectDashboardDb
                         'name'  : 'CEB(Maintenance)',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 40510.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 59490.00
                             }
                         ]
@@ -143,11 +143,11 @@ export class ProjectDashboardDb
                         'name'  : 'DGM(Anuradhapura)',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 10000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 70000.00
                             }
                         ]
@@ -156,11 +156,11 @@ export class ProjectDashboardDb
                         'name'  : 'Upali Funerals',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 25116.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 74884.00
                             }
                         ]
@@ -169,11 +169,11 @@ export class ProjectDashboardDb
                         'name'  : 'Grand',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 70536.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 49464.00
                             }
                         ]
@@ -182,11 +182,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mr.Premarathna',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 50500.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 49500.00
                             }
                         ]
@@ -195,11 +195,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mr.Somarthna',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 15000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 85000.00
                             }
                         ]
@@ -208,11 +208,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mrs.Dhammi',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 5000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 65000.00
                             }
                         ]
@@ -224,11 +224,11 @@ export class ProjectDashboardDb
                         'name'  : 'ceylinco',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 85000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 5000.00
                             }
                         ]
@@ -237,11 +237,11 @@ export class ProjectDashboardDb
                         'name'  : 'Plan Sri Lanka',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 80000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 10000.00
                             }
                         ]
@@ -250,11 +250,11 @@ export class ProjectDashboardDb
                         'name'  : 'Sathosa',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 97000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 13000.00
                             }
                         ]
@@ -263,11 +263,11 @@ export class ProjectDashboardDb
                         'name'  : 'CEB(Maintenance)',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 100000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 0
                             }
                         ]
@@ -276,11 +276,11 @@ export class ProjectDashboardDb
                         'name'  : 'DGM(Anuradhapura)',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 50000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 30000.00
                             }
                         ]
@@ -289,11 +289,11 @@ export class ProjectDashboardDb
                         'name'  : 'Upali Funerals',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 82000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 12000.00
                             }
                         ]
@@ -302,11 +302,11 @@ export class ProjectDashboardDb
                         'name'  : 'Grand',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 110000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 10000.00
                             }
                         ]
@@ -315,11 +315,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mr.Premarathna',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 99000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 1000.00
                             }
                         ]
@@ -328,11 +328,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mr.Somarthna',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 40000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 60000.00
                             }
                         ]
@@ -341,11 +341,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mrs.Dhammi',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 15000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 55000.00
                             }
                         ]
@@ -357,11 +357,11 @@ export class ProjectDashboardDb
                         'name'  : 'ceylinco',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 3245.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 76755.00
                             }
                         ]
@@ -370,11 +370,11 @@ export class ProjectDashboardDb
                         'name'  : 'Plan Sri Lanka',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 9383.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 80617.00
                             }
                         ]
@@ -383,11 +383,11 @@ export class ProjectDashboardDb
                         'name'  : 'Sathosa',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 18000.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 92000.00
                             }
                         ]
@@ -396,11 +396,11 @@ export class ProjectDashboardDb
                         'name'  : 'CEB(Maintenance)',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 32595.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 67405.00
                             }
                         ]
@@ -409,11 +409,11 @@ export class ProjectDashboardDb
                         'name'  : 'DGM(Anuradhapura)',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 4305.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 75695.00
                             }
                         ]
@@ -422,11 +422,11 @@ export class ProjectDashboardDb
                         'name'  : 'Upali Funerals',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 11612.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 88388.00
                             }
                         ]
@@ -435,11 +435,11 @@ export class ProjectDashboardDb
                         'name'  : 'Grand',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 52407.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 77593.00
                             }
                         ]
@@ -448,11 +448,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mr.Premarathna',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 29889.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 70111.00
                             }
                         ]
@@ -461,11 +461,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mr.Somarthna',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 8500.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 91500.00
                             }
                         ]
@@ -474,11 +474,11 @@ export class ProjectDashboardDb
                         'name'  : 'Mrs.Dhammi',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name' : 'Debt',
                                 'value': 4220.00
                             },
                             {
-                                'name' : 'closed issues',
+                                'name' : 'Threshold Remain',
                                 'value': 65780.00
                             }
                         ]
