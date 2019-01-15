@@ -1,156 +1,6 @@
 <div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
 
-    <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="project-dashboard-right-sidebar-1" position="right" lockedOpen="gt-md">
-
-        <!-- SIDEBAR CONTENT -->
-        <div class="content">
-
-            <!-- WIDGET GROUP -->
-            <div class="widget-group" fxLayout="column" fxFlex="100" [@animateStagger]="{value:'50'}">
-
-                <!-- NOW WIDGET -->
-                <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="p-0">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-
-                        <div class="pl-16 pr-8 py-16" fxLayout="row" fxLayoutAlign="space-between center">
-
-                            <div class="h3">{{dateNow | date: 'EEEE, HH:mm:ss'}}</div>
-
-                            <div>
-                                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="more">
-                                    <mat-icon>more_vert</mat-icon>
-                                </button>
-
-                                <mat-menu #moreMenu="matMenu">
-                                    <button mat-menu-item aria-label="Flip widget">
-                                        Details
-                                    </button>
-                                </mat-menu>
-                            </div>
-                        </div>
-
-                        <div class="p-16 pb-24" fxLayout="column" fxLayoutAlign="center center">
-                            <div class="h1 secondary-text">
-                                <span>{{dateNow | date: 'MMMM'}}</span>
-                            </div>
-
-                            <div class="font-size-72 line-height-88 secondary-text font-weight-400">
-                                {{dateNow | date: 'd'}}
-                            </div>
-
-                            <div class="h1 secondary-text">
-                                <span>{{dateNow | date: 'y'}}</span>
-                            </div>
-                        </div>
-
-                        <mat-divider></mat-divider>
-                    </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / NOW WIDGET -->
-
-                <!-- WEATHER WIDGET -->
-                <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="p-0">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-
-                        <div class="pl-16 pr-8 py-16" fxLayout="row" fxLayoutAlign="space-between center">
-
-                            <div class="h4" fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon class="secondary-text mr-8">place</mat-icon>
-                                {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].name}}
-                            </div>
-
-                            <div>
-                                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="more">
-                                    <mat-icon class="secondary-text">more_vert</mat-icon>
-                                </button>
-
-                                <mat-menu #moreMenu="matMenu">
-                                    <button mat-menu-item aria-label="Flip widget">
-                                        Details
-                                    </button>
-                                </mat-menu>
-                            </div>
-                        </div>
-
-                        <div class="p-16 pb-32" fxLayout="column" fxLayoutAlign="center center">
-
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <mat-icon fontSet="meteocons"
-                                          [fontIcon]="widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].icon"
-                                          class="icon s-40 secondary-text mr-16"></mat-icon>
-                                <span class="mat-display-2 m-0 font-weight-300 secondary-text">
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].temp[widgets.weatherWidget.tempUnit]}}
-                                </span>
-                                <span class="font-size-48 font-weight-300 hint-text text-super ml-8">°</span>
-                                <span class="mat-display-2 mb-0 font-weight-300 hint-text ng-binding">C</span>
-                            </div>
-                        </div>
-
-                        <div class="grey-300-bg p-16" fxLayout="row" fxLayoutAlign="space-between center">
-                            <div fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon fontSet="meteocons" fontIcon="icon-windy"
-                                          class="s-16 secondary-text mr-8"></mat-icon>
-                                <span>
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].windSpeed[widgets.weatherWidget.speedUnit]}}
-                                </span>
-                                <span class="secondary-text ml-5">{{widgets.weatherWidget.speedUnit}}</span>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon fontSet="meteocons" fontIcon="icon-compass"
-                                          class="s-16 secondary-text mr-8"></mat-icon>
-                                <span>
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].windDirection}}
-                                </span>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutAlign="start center">
-                                <mat-icon fontSet="meteocons" fontIcon="icon-rainy"
-                                          class="s-16 secondary-text mr-8"></mat-icon>
-                                <span>
-                                    {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].rainProbability}}
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="py-16">
-                            <div class="py-16 px-24" fxLayout="row" fxLayoutAlign="space-between center"
-                                 *ngFor="let day of widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].next3Days">
-                                <span class="h4">{{day.name}}</span>
-                                <div fxLayout="row" fxLayoutAlign="start center">
-                                    <mat-icon fontSet="meteocons" [fontIcon]="day.icon" class="secondary-text mr-16"></mat-icon>
-                                    <span class="h2">{{day.temp[widgets.weatherWidget.tempUnit]}}</span>
-                                    <span class="h2 font-weight-300 secondary-text text-super">&deg;</span>
-                                    <span class="h2 font-weight-300 secondary-text">
-                                        {{widgets.weatherWidget.tempUnit}}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <mat-divider></mat-divider>
-
-                    </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WEATHER WIDGET -->
-
-            </div>
-            <!-- / WIDGET GROUP -->
-
-        </div>
-        <!-- / SIDEBAR CONTENT -->
-
-    </fuse-sidebar>
-    <!-- / SIDEBAR -->
+   
 
     <!-- CENTER -->
     <div class="center" fusePerfectScrollbar>
@@ -161,16 +11,16 @@
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
                 <span class="mat-display-1 mb-0 welcome-message"
-                      [@animate]="{value:'*',params:{x:'50px'}}">Welcome back, John!
+                      [@animate]="{value:'*',params:{x:'50px'}}">Welcome back, Rashmi!
                 </span>
 
-                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                <!-- <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
                         (click)="toggleSidebar('project-dashboard-right-sidebar-1')">
                     <mat-icon>menu</mat-icon>
-                </button>
+                </button> -->
             </div>
 
-            <div fxLayout="row">
+            <!-- <div fxLayout="row">
 
                 <div class="selected-project">{{selectedProject.name}}</div>
 
@@ -184,7 +34,7 @@
                         <span>{{project.name}}</span>
                     </button>
                 </mat-menu>
-            </div>
+            </div> -->
         </div>
         <!-- / HEADER -->
 
@@ -427,7 +277,7 @@
 
                                 <div fxLayout="row wrap" fxLayoutAlign="start start">
 
-                                    <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
+                                    <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="200" >
                                         <ngx-charts-bar-vertical-stacked
                                             *fuseIfOnDom
                                             [scheme]="widget5.scheme"
@@ -444,7 +294,7 @@
                                         </ngx-charts-bar-vertical-stacked>
                                     </div>
 
-                                    <div class="my-16" fxFlex="100" fxLayout="row wrap" fxFlex.gt-sm="50">
+                                    <!-- <div class="my-16" fxFlex="100" fxLayout="row wrap" fxFlex.gt-sm="50">
 
                                         <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center"
                                              *ngFor="let widget of widgets.widget5.supporting | keys"
@@ -474,7 +324,7 @@
                                                 </ngx-charts-area-chart>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <!-- / Front -->
@@ -484,7 +334,7 @@
 
                         <!-- WIDGET 6 -->
                         <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
-                                     fxFlex="100" fxFlex.gt-sm="50">
+                                     fxFlex="100" fxFlex.gt-sm="200">
 
                             <!-- Front -->
                             <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
@@ -517,7 +367,7 @@
                                     </ngx-charts-pie-chart>
                                 </div>
 
-                                <div class="py-8 mh-16 border-top" fxLayout="row wrap" fxLayoutAlign="start center">
+                                <!-- <div class="py-8 mh-16 border-top" fxLayout="row wrap" fxLayoutAlign="start center">
 
                                     <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center"
                                          fxFlex="100" fxFlex.gt-sm="50">
@@ -534,7 +384,7 @@
                                         </span>
                                         <span class="h4">{{widgets.widget6.footerRight.title}}</span>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                             <!-- / Front -->
@@ -543,11 +393,11 @@
                         <!-- / WIDGET 6 -->
 
                         <!-- WIDGET 7 -->
-                        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
-                                     fxFlex="100" fxFlex.gt-sm="50">
+                        <!-- <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+                                     fxFlex="100" fxFlex.gt-sm="50"> -->
 
                             <!-- Front -->
-                            <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
+                            <!-- <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
 
                                 <div class="px-16 py-8 border-bottom" fxLayout="row"
                                      fxLayoutAlign="space-between center">
@@ -578,10 +428,10 @@
                                     </button>
                                 </div>
 
-                            </div>
+                            </div> -->
                             <!-- / Front -->
 
-                        </fuse-widget>
+                        <!-- </fuse-widget> -->
                         <!-- / WIDGET 7 -->
 
                     </div>
@@ -652,11 +502,11 @@
                                     <div fxFlex="0 1 auto">
                                         <div class="h4 secondary-text">{{widgets.widget9.weeklySpent.title}}</div>
                                         <div class="pt-8 mat-display-1 m-0 font-weight-300 text-nowrap">
-                                            <span class="secondary-text">$</span>
+                                            <span class="secondary-text"></span>
                                             <span>{{widgets.widget9.weeklySpent.count[widget9.currentRange]}}</span>
                                         </div>
                                     </div>
-                                    <div class="h-52" fxFlex>
+                                    <!-- <div class="h-52" fxFlex>
                                         <ngx-charts-area-chart
                                             *fuseIfOnDom
                                             [results]="widgets.widget9.weeklySpent.chart[widget9.currentRange]"
@@ -671,7 +521,7 @@
                                             [yAxisLabel]="widget9.yAxisLabel"
                                             [curve]="widget9.curve">
                                         </ngx-charts-area-chart>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="px-16 py-24" fxLayout="column" fxLayoutAlign="center"
@@ -680,11 +530,11 @@
                                     <div fxFlex="0 1 auto">
                                         <div class="h4 secondary-text">{{widgets.widget9.totalSpent.title}}</div>
                                         <div class="pt-8 mat-display-1 m-0 font-weight-300 text-nowrap">
-                                            <span class="secondary-text">$</span>
+                                            <span class="secondary-text">Rs.</span>
                                             <span>{{widgets.widget9.totalSpent.count[widget9.currentRange]}}</span>
                                         </div>
                                     </div>
-                                    <div class="h-52" fxFlex>
+                                    <!-- <div class="h-52" fxFlex>
                                         <ngx-charts-area-chart
                                             *fuseIfOnDom
                                             [results]="widgets.widget9.totalSpent.chart[widget9.currentRange]"
@@ -699,10 +549,10 @@
                                             [yAxisLabel]="widget9.yAxisLabel"
                                             [curve]="widget9.curve">
                                         </ngx-charts-area-chart>
-                                    </div>
+                                    </div> -->
                                 </div>
 
-                                <div class="px-16 py-24" fxLayout="column" fxLayoutAlign="center"
+                                <!-- <div class="px-16 py-24" fxLayout="column" fxLayoutAlign="center"
                                      fxLayout.gt-xs="row"
                                      fxLayoutAlign.gt-xs="space-between end">
                                     <div fxFlex="0 1 auto">
@@ -728,13 +578,13 @@
                                             [curve]="widget9.curve">
                                         </ngx-charts-area-chart>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="px-16 py-24 border-top">
                                     <div class="h4 secondary-text">{{widgets.widget9.totalBudget.title}}</div>
                                     <div class="pt-8 mat-display-1 m-0 font-weight-300">
                                         <span class="secondary-text">$</span>
-                                        <span>{{widgets.widget9.totalBudget.count}}</span>
+                                        <span>{{widgets.widget9.totalBudget.count[widget9.currentRange]}}</span>
                                     </div>
                                 </div>
 
@@ -745,12 +595,12 @@
                         <!-- / WIDGET 9 -->
 
                         <!-- WIDGET 10 -->
-                        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row"
-                                     fxFlex="100">
+                        <!-- <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row"
+                                     fxFlex="100"> -->
 
                             <!-- Front -->
-                            <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
-
+                           <!-- <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
+ 
                                 <div class="simple-table-container" ms-responsive-table>
                                     <div class=" table-title">
                                         {{widgets.widget10.title}}
@@ -780,10 +630,10 @@
                                     </table>
                                 </div>
 
-                            </div>
+                            </div> -->
                             <!-- / Front -->
 
-                        </fuse-widget>
+                        <!-- </fuse-widget> -->
                         <!-- / WIDGET 10 -->
 
                     </div>
@@ -791,7 +641,7 @@
 
                 </mat-tab>
 
-                <mat-tab label="Team Members">
+                <mat-tab label="Employees">
 
                     <!-- WIDGET GROUP -->
                     <div class="widget-group grey-100-bg" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom

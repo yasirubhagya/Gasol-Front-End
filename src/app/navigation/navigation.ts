@@ -21,7 +21,7 @@ export const navigation: FuseNavigation[] = [
                 id   : 'project',
                 title: 'Project',
                 type : 'item',
-                icon : 'send',
+                icon : 'archive',
                 url  : '/project/'
             },
         ]

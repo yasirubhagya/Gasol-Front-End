@@ -40,7 +40,7 @@ export class ProjectDashboardDb
 
                 }
             },
-            'detail'      : 'You can show some detailed information about this widget in here.'
+            'detail'      : 'Details about the due tasks.'
         },
         'widget2'      : {
             'title' : 'Overdue',
@@ -52,7 +52,7 @@ export class ProjectDashboardDb
                     'count': 2
                 }
             },
-            'detail': 'You can show some detailed information about this widget in here.'
+            'detail': 'Details about the overdue tasks.'
         },
         'widget3'      : {
             'title' : 'Issues',
@@ -64,7 +64,7 @@ export class ProjectDashboardDb
                     'count': 0
                 }
             },
-            'detail': 'You can show some detailed information about this widget in here.'
+            'detail': 'Details about the Open Tasks.'
         },
         'widget4'      : {
             'title' : 'Features',
@@ -76,295 +76,415 @@ export class ProjectDashboardDb
                     'count': 8
                 }
             },
-            'detail': 'You can show some detailed information about this widget in here.'
+            'detail': 'Details about the Proposals.'
         },
         'widget5'      : {
-            'title'     : 'Github Issues',
+            'title'     : 'Customers Threshold',
             'ranges'    : {
                 'TW': 'This Week',
-                'LW': 'Last Week',
-                '2W': '2 Weeks Ago'
+                '2W': '2 Weeks Ago',
+                'LM': 'Last Month'
             },
             'mainChart' : {
                 '2W': [
                     {
-                        'name'  : 'Mon',
+                        'name'  : 'ceylinco',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 37
+                                'value': 37000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 9
+                                'value': 43000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Tue',
+                        'name'  : 'Plan Sri Lanka',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 32
+                                'value': 27310.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 12
+                                'value': 62690.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Wed',
+                        'name'  : 'Sathosa',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 39
+                                'value': 50000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 9
+                                'value': 60000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Thu',
+                        'name'  : 'CEB(Maintenance)',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 27
+                                'value': 40510.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 12
+                                'value': 59490.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Fri',
+                        'name'  : 'DGM(Anuradhapura)',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 18
+                                'value': 10000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 7
+                                'value': 70000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sat',
+                        'name'  : 'Upali Funerals',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 24
+                                'value': 25116.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 8
+                                'value': 74884.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sun',
+                        'name'  : 'Grand',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 20
+                                'value': 70536.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 16
+                                'value': 49464.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mr.Premarathna',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 50500.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 49500.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mr.Somarthna',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 15000.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 85000.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mrs.Dhammi',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 5000.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 65000.00
                             }
                         ]
                     }
+
                 ],
-                'LW': [
+                'LM': [
                     {
-                        'name'  : 'Mon',
+                        'name'  : 'ceylinco',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 37
+                                'value': 85000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 12
+                                'value': 5000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Tue',
+                        'name'  : 'Plan Sri Lanka',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 24
+                                'value': 80000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 8
+                                'value': 10000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Wed',
+                        'name'  : 'Sathosa',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 51
+                                'value': 97000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 7
+                                'value': 13000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Thu',
+                        'name'  : 'CEB(Maintenance)',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 31
+                                'value': 100000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 13
+                                'value': 0
                             }
                         ]
                     },
                     {
-                        'name'  : 'Fri',
+                        'name'  : 'DGM(Anuradhapura)',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 29
+                                'value': 50000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 7
+                                'value': 30000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sat',
+                        'name'  : 'Upali Funerals',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 17
+                                'value': 82000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 6
+                                'value': 12000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sun',
+                        'name'  : 'Grand',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 31
+                                'value': 110000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 10
+                                'value': 10000.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mr.Premarathna',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 99000.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 1000.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mr.Somarthna',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 40000.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 60000.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mrs.Dhammi',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 15000.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 55000.00
                             }
                         ]
                     }
+
                 ],
                 'TW': [
                     {
-                        'name'  : 'Mon',
+                        'name'  : 'ceylinco',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 42
+                                'value': 3245.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 11
+                                'value': 76755.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Tue',
+                        'name'  : 'Plan Sri Lanka',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 28
+                                'value': 9383.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 10
+                                'value': 80617.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Wed',
+                        'name'  : 'Sathosa',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 43
+                                'value': 18000.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 8
+                                'value': 92000.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Thu',
+                        'name'  : 'CEB(Maintenance)',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 34
+                                'value': 32595.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 11
+                                'value': 67405.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Fri',
+                        'name'  : 'DGM(Anuradhapura)',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 20
+                                'value': 4305.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 8
+                                'value': 75695.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sat',
+                        'name'  : 'Upali Funerals',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 25
+                                'value': 11612.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 10
+                                'value': 88388.00
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sun',
+                        'name'  : 'Grand',
                         'series': [
                             {
                                 'name' : 'issues',
-                                'value': 22
+                                'value': 52407.00
                             },
                             {
                                 'name' : 'closed issues',
-                                'value': 17
+                                'value': 77593.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mr.Premarathna',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 29889.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 70111.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mr.Somarthna',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 8500.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 91500.00
+                            }
+                        ]
+                    },
+                    {
+                        'name'  : 'Mrs.Dhammi',
+                        'series': [
+                            {
+                                'name' : 'issues',
+                                'value': 4220.00
+                            },
+                            {
+                                'name' : 'closed issues',
+                                'value': 65780.00
                             }
                         ]
                     }
-                ]
+
+                ],
             },
             'supporting': {
                 'created'  : {
@@ -1062,67 +1182,67 @@ export class ProjectDashboardDb
         'widget6'      : {
             'title'      : 'Task Distribution',
             'ranges'     : {
-                'TW': 'This Week',
-                'LW': 'Last Week',
-                '2W': '2 Weeks Ago'
+                'TW': 'Today',
+                'LW': 'Next Week',
+                '2W': 'This Month'
             },
             'mainChart'  : {
                 'TW': [
                     {
-                        'name' : 'Frontend',
+                        'name' : 'Oil Level in the Tanks',
                         'value': 15
                     },
                     {
-                        'name' : 'Backend',
+                        'name' : 'Threshold Limits of Customers',
                         'value': 20
                     },
                     {
-                        'name' : 'API',
+                        'name' : 'Order Oil for the Tanks',
                         'value': 38
                     },
                     {
-                        'name' : 'Issues',
+                        'name' : 'Pay Bills',
                         'value': 27
                     }
                 ],
                 'LW': [
                     {
-                        'name' : 'Frontend',
-                        'value': 19
+                        'name' : 'Oil Level in the Tanks',
+                        'value': 15
                     },
                     {
-                        'name' : 'Backend',
-                        'value': 16
+                        'name' : 'Threshold Limits of Customers',
+                        'value': 20
                     },
                     {
-                        'name' : 'API',
-                        'value': 42
+                        'name' : 'Order Oil for the Tanks',
+                        'value': 38
                     },
                     {
-                        'name' : 'Issues',
-                        'value': 23
+                        'name' : 'Pay Bills',
+                        'value': 27
                     }
                 ],
                 '2W': [
                     {
-                        'name' : 'Frontend',
-                        'value': 18
+                        'name' : 'Oil Level in the Tanks',
+                        'value': 15
                     },
                     {
-                        'name' : 'Backend',
-                        'value': 17
+                        'name' : 'Threshold Limits of Customers',
+                        'value': 20
                     },
                     {
-                        'name' : 'API',
-                        'value': 40
+                        'name' : 'Order Oil for the Tanks',
+                        'value': 38
                     },
                     {
-                        'name' : 'Issues',
-                        'value': 25
+                        'name' : 'Pay Bills',
+                        'value': 27
                     }
                 ]
             },
-            'footerLeft' : {
+            /* 'footerLeft' : {
                 'title': 'Tasks Added',
                 'count': {
                     '2W': 487,
@@ -1137,7 +1257,7 @@ export class ProjectDashboardDb
                     'LW': 260,
                     'TW': 287
                 }
-            }
+            } */
         },
         'widget7'      : {
             'title'   : 'Schedule',
@@ -1210,43 +1330,43 @@ export class ProjectDashboardDb
             }
         },
         'widget8'      : {
-            'title'    : 'Budget Distribution',
+            'title'    : 'Income Distribution',
             'mainChart': [
                 {
-                    'name' : 'Wireframing',
+                    'name' : 'Disel',
                     'value': 12
                 },
                 {
-                    'name' : 'Design',
+                    'name' : 'Petrol(90C)',
                     'value': 17
                 },
                 {
-                    'name' : 'Coding',
+                    'name' : 'Petrol(95C)',
                     'value': 28
                 },
                 {
-                    'name' : 'Marketing',
+                    'name' : 'Kerosene',
                     'value': 25
                 },
                 {
-                    'name' : 'Extra',
+                    'name' : 'Order Item',
                     'value': 15
                 }
             ]
         },
         'widget9'      : {
-            'title'         : 'Spent',
+            'title'         : 'Cash Flow',
             'ranges'        : {
-                'TW': 'This Week',
-                'LW': 'Last Week',
-                '2W': '2 Weeks Ago'
+                'TW': 'Today',
+                'LW': 'This Week',
+                '2W': 'This Month'
             },
             'weeklySpent'   : {
-                'title': 'WEEKLY SPENT',
+                'title': 'Income',
                 'count': {
-                    '2W': '2,682.85',
-                    'LW': '1,445.34',
-                    'TW': '3,630.15'
+                    '2W': '5,000,682.85',
+                    'LW': '1,050,445.34',
+                    'TW': '3,000,630.15'
                 },
                 'chart': {
                     '2W': [
@@ -1357,11 +1477,11 @@ export class ProjectDashboardDb
                 }
             },
             'totalSpent'    : {
-                'title': 'TOTAL SPENT',
+                'title': 'Expenditure',
                 'count': {
-                    '2W': '29,682.85',
-                    'LW': '31,128.19',
-                    'TW': '34,758.34'
+                    '2W': '3,900,682.85',
+                    'LW': '500,128.19',
+                    'TW': '2,000,758.34'
                 },
                 'chart': {
                     '2W': [
@@ -1471,7 +1591,7 @@ export class ProjectDashboardDb
                     ]
                 }
             },
-            'remaining'     : {
+           /*  'remaining'     : {
                 'title': 'REMAINING',
                 'count': {
                     '2W': '94.317,15',
@@ -1584,15 +1704,25 @@ export class ProjectDashboardDb
                             ]
                         }
                     ]
+
+                   'weeklySpent'   : {
+                'title': 'Income',
+                'count': {
+                    '2W': '5,000,682.85',
+                    'LW': '1,050,445.34',
+                    'TW': '3,000,630.15'
+                },
                 }
-            },
-            'totalRemaining': {
-                'title': 'TOTAL BUDGET',
-                'count': '124.000,00'
-            },
+            }, */
+   
             'totalBudget'   : {
-                'title': 'TOTAL BUDGET',
-                'count': '124.000,00'
+                'title': 'Profit',
+                
+                'count': {
+                    '2W': '1,100,000.00',
+                    'LW': '550,317.15',
+                    'TW': '999,871.81'
+                },
             }
         },
         'widget10'     : {
@@ -1783,19 +1913,19 @@ export class ProjectDashboardDb
             }
         },
         'widget11'     : {
-            'title': 'Team Members',
+            'title': 'Employees',
             'table': {
                 'columns': ['avatar', 'name', 'position', 'office', 'email', 'phone'],
                 'rows'   : [
                     {
-                        avatar  : 'assets/images/avatars/james.jpg',
-                        name    : 'Jack Gilbert',
-                        position: 'Design Manager',
-                        office  : 'Johor Bahru',
-                        email   : 'jgilbert48@mail.com',
-                        phone   : '+16 298 032 7774'
-                    },
-                    {
+                        avatar  : 'assets/images/avatars/Rashmi.jpg',
+                        name    : 'Rashmi Thilakarathne',
+                        position: 'Manager',
+                        office  : 'Anuradhapura',
+                        email   : 'Rashmi@qualon.xyz',
+                        phone   : '+94 71 524 9658'
+                    }
+                   /*  {
                         avatar  : 'assets/images/avatars/katherine.jpg',
                         name    : 'Kathy Anderson',
                         position: 'Recruiting Manager',
@@ -1943,7 +2073,7 @@ export class ProjectDashboardDb
                         office  : 'Gangkou',
                         email   : 'ggonzalez4r@mail.cc',
                         phone   : '+10 862 046 7916'
-                    }
+                    } */
                 ]
             }
         },
