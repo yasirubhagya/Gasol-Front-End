@@ -71,12 +71,13 @@ export class LoginComponent implements OnInit
             password: this.password
         }
 
-        this.authService.authenticateUser(user).subscribe(data =>{
+        /* this.authService.authenticateUser(user).subscribe(data =>{
             if(data.success){
-                console.log(data.msg)
+                console.log(data.msg);
+                this.router.navigate(['analytics']);
             }else{
-                console.log(data.msg)
+                console.log(data.msg);
             }
-        })
+        }) */
     }
 }
