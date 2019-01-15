@@ -5,6 +5,7 @@ import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule 
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { LoginComponent } from 'app/authentication/login/login.component';
+import {AuthService} from '../../services/auth.service';
 
 const routes = [
     {
@@ -26,7 +27,8 @@ const routes = [
         MatInputModule,
 
         FuseSharedModule
-    ]
+    ],
+    providers: [AuthService]
 })
 export class LoginModule
 {

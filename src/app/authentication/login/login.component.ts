@@ -3,7 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Router } from '@angular/router';
+
+interface USER {
+    useremail:String;
+    userpassword:String;
+    valid:boolean;
+}
 
 @Component({
     selector   : 'login',
@@ -28,7 +34,7 @@ export class LoginComponent implements OnInit
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private authService: AuthService,
-        private router: RouterModule
+        private router: Router
     )
     {
         // Configure the layout
@@ -66,16 +72,18 @@ export class LoginComponent implements OnInit
     }
 
     check(){
-        const user = {
-            email: this.email,
-            password: this.password
+        const user:USER = {
+            useremail: this.email,
+            userpassword: this.password,
+            valid:false
         }
 
         this.authService.authenticateUser(user).subscribe(data =>{
-            if(data.success){
-                console.log(data.msg)
+            if(data.valid){
+                this.router.navigate(['analytics']);
+                console.log(data.useremail)
             }else{
-                console.log(data.msg)
+                console.log(data.valid)
             }
         })
     }
