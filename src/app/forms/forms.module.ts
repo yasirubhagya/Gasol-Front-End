@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MatButtonModule, MatFormFieldModule, MatInputModule,MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule,MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatCardModule,MatToolbarModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseCountdownModule } from '@fuse/components';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { formsComponent } from 'app/forms/forms.component';
 import {EmployeesComponent} from './employees/employees.component';
-
-  
+import {CustomersComponent} from './customers/customers.component';
+import {FuelTypeComponent} from './fueltype/fueltype.component';
 
 const routes = [
     {
@@ -24,7 +24,9 @@ const routes = [
 @NgModule({
     declarations: [
         formsComponent,
-        EmployeesComponent
+        EmployeesComponent,
+        CustomersComponent,
+        FuelTypeComponent,
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -37,7 +39,10 @@ const routes = [
         FuseCountdownModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatIconModule,
+        MatCardModule,
+        MatToolbarModule
     ]
 })
 export class FormsModule

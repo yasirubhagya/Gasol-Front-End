@@ -5,7 +5,14 @@ import { takeUntil } from 'rxjs/internal/operators';
 import {AuthService} from '../../services/auth.service';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Router } from '@angular/router';
+
+interface USER {
+    userename:String;
+    useremail:String;
+    userpassword:String;
+    valid:boolean;
+}
 
 @Component({
     selector   : 'register',
@@ -31,7 +38,7 @@ export class RegisterComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private authService: AuthService,
-        private router: RouterModule
+        private router: Router
     )
     {
         // Configure the layout
@@ -91,20 +98,23 @@ export class RegisterComponent implements OnInit, OnDestroy
         this._unsubscribeAll.complete();
     }
     transfer(){
-       const user = {
-           name: this.name,
-           email: this.email,
-           password: this.password
-       }
+        //this.router.navigate(['login'])
+        const user:USER = {
+            userename:this.name,
+            useremail:this.email,
+            userpassword:this.password,
+            valid:false
+        }
 //Registration
-       /* his.authService.registerUser(user).subscribe(data => {
-           if(data.success){
-                console.log('Registered')
-                this.router.navigate(['/login']);
-           }else{
-                console.log('Error')
-           }
-       }); */
+        this.authService.registerUser(user).subscribe(data =>{
+            if(data.valid){
+                this.router.navigate(['login']);
+                console.log(data.useremail)
+            }else{
+                this.router.navigate(['register']);
+                console.log(data.valid)
+            }
+        })
 
     }
 }

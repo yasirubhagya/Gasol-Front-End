@@ -128,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy
      * @param key
      */
     toggleSidebarOpen(key): void
-    {
+    {   
         this._fuseSidebarService.getSidebar(key).toggleOpen();
     }
 }

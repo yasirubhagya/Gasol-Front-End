@@ -8,7 +8,7 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
-import {AuthService} from './services/auth.service';
+
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
@@ -109,11 +109,12 @@ const appRoutes: Routes = [
         LayoutModule,
         
     ],
-    providers: [AuthService],
+    
     bootstrap   : [
         AppComponent
     ]
 })
 export class AppModule
 {
+    
 }
