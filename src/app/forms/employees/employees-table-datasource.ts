@@ -17,7 +17,7 @@ export interface EmployeesTableItem {
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: EmployeesTableItem[] = [
-  {nic:'950552212v', firstname: 'yasiru',lastname:'bhagya',dateofbirth:new Date(),phoneno:'+94710579840',gender:'Male',address:'simple address',levelid:2},
+  {nic:'950552212v', firstname: 'yasiru',lastname:'bhagya',dateofbirth:new Date(),phoneno:'+94710579840',gender:'Male',address:'simple address',levelid:1},
   {nic:'961881072v', firstname: 'prasad',lastname:'madushanka',dateofbirth:new Date(),phoneno:'+947105795540',gender:'Male',address:'simple address2',levelid:2},
 
 ];
