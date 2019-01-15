@@ -20,11 +20,11 @@ export class FuelTypeComponent implements OnInit {
   dataSource: MatTableDataSource<FuelTypeTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['FuelID', 'Name', 'Commision','Price','actions'];
+ private displayedColumns = ['FuelID', 'Name', 'Commision','Price','actions'];
 
-  tempFuelItem: FuelTypeTableItem;
-  isexpanded = false;
-  updateMod = false;
+ private tempFuelItem: FuelTypeTableItem;
+ private isexpanded = false;
+ private updateMod = false;
 
   constructor(private dbconn: DbService) {
     // Create 100 users
