@@ -18,42 +18,43 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-form-field>
-                        <input matInput placeholder="NIC" [(ngModel)]="tempEmpItem.nic">
+                        <input matInput [disabled] ="updateMod" placeholder="NIC" [(ngModel)]="tempEmpItem.NIC">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="First name" [(ngModel)]="tempEmpItem.firstname">
+                        <input matInput placeholder="First name" [(ngModel)]="tempEmpItem.FName">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Last name" [(ngModel)]="tempEmpItem.lastname">
+                        <input matInput placeholder="Last name" [(ngModel)]="tempEmpItem.LName">
                     </mat-form-field>
 
                     <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="tempEmpItem.dateofbirth">
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="tempEmpItem.DOB">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="PhoneNo" [(ngModel)]="tempEmpItem.phoneno">
+                        <input matInput placeholder="PhoneNo" [(ngModel)]="tempEmpItem.PhoneNumber">
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-select placeholder="Gender" [(value)]="tempEmpItem.gender">
+                        <mat-select placeholder="Gender" [(value)]="tempEmpItem.Gender">
                             <mat-option value="Male">Male</mat-option>
                             <mat-option value="Female">Female</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Address" [(ngModel)]="tempEmpItem.address">
+                        <input matInput placeholder="Address" [(ngModel)]="tempEmpItem.Address">
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-select placeholder="JobTitle" [(value)]="tempEmpItem.levelid">
+                        <mat-select placeholder="JobTitle" [(value)]="tempEmpItem.LevelId">
                             <mat-option value="1">Manager</mat-option>
                             <mat-option value="2">Cleark</mat-option>
                             <mat-option value="3">Minor</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-action-row>
-                        <button mat-button color="error" (click)="isexpanded=false">Cancel</button>
-                        <button mat-button color="primary">Insert</button>
+                        <button mat-button color="error" (click)="cancel()">Cancel</button>
+                        <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempEmpItem)">Update</button>
+                        <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempEmpItem)">Insert</button>
                     </mat-action-row>
                 </mat-expansion-panel>
 
@@ -64,59 +65,59 @@
 
             <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
                 <!-- Id Column -->
-                <ng-container matColumnDef="nic">
+                <ng-container matColumnDef="NIC">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>NIC</th>
-                    <td mat-cell *matCellDef="let row">{{row.nic}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.NIC}}</td>
                 </ng-container>
 
                 <!-- FirstName Column -->
-                <ng-container matColumnDef="firstname">
+                <ng-container matColumnDef="FName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</th>
                     <td mat-cell *matCellDef="let row">
-                        {{row.firstname}}
+                        {{row.FName}}
                     </td>
                 </ng-container>
 
                 <!-- LastName Column -->
-                <ng-container matColumnDef="lastname">
+                <ng-container matColumnDef="LName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>LastName</th>
-                    <td mat-cell *matCellDef="let row">{{row.lastname}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.LName}}</td>
                 </ng-container>
 
                 <!-- dateofbirth Column -->
-                <ng-container matColumnDef="dateofbirth">
+                <ng-container matColumnDef="DOB">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>DateOfBirth</th>
-                    <td mat-cell *matCellDef="let row">{{row.dateofbirth|date}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.DOB|date}}</td>
                 </ng-container>
 
                 <!-- phoneno Column -->
-                <ng-container matColumnDef="phoneno">
+                <ng-container matColumnDef="PhoneNumber">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>PhoneNo</th>
-                    <td mat-cell *matCellDef="let row">{{row.phoneno}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.PhoneNumber}}</td>
                 </ng-container>
 
                 <!-- gender Column -->
-                <ng-container matColumnDef="gender">
+                <ng-container matColumnDef="Gender">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
-                    <td mat-cell *matCellDef="let row">{{row.gender}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.Gender}}</td>
                 </ng-container>
 
                 <!-- address Column -->
-                <ng-container matColumnDef="address">
+                <ng-container matColumnDef="Address">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-                    <td mat-cell *matCellDef="let row">{{row.address}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.Address}}</td>
                 </ng-container>
 
                 <!-- levelid Column -->
-                <ng-container matColumnDef="levelid">
+                <ng-container matColumnDef="LevelId">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>LevelId</th>
-                    <td mat-cell *matCellDef="let row">{{row.levelid}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.LevelId}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef>Actions</th>
                     <td mat-cell *matCellDef="let row">
-                        <button mat-icon-button (click)="updateItem(row)">
+                        <button mat-icon-button (click)="enableUpdateMod(row)">
                             <mat-icon>launch</mat-icon>
                         </button>
                         <button mat-icon-button color="warn" (click)="deleteItem(row)">

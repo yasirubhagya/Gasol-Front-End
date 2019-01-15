@@ -5,22 +5,18 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface EmployeesTableItem {
-  nic:string;
-  firstname: string;
-  lastname: string;
-  dateofbirth: Date;
-  phoneno:string;
-  gender:string;
-  address:string;
-  levelid:Number;
+  NIC: String,
+  FName: String,
+  LName: String,
+  DOB:Date,
+  PhoneNumber:String,
+  Gender: String,
+  Address: String,
+  LevelId: Number
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: EmployeesTableItem[] = [
-  {nic:'950552212v', firstname: 'yasiru',lastname:'bhagya',dateofbirth:new Date(),phoneno:'+94710579840',gender:'Male',address:'simple address',levelid:1},
-  {nic:'961881072v', firstname: 'prasad',lastname:'madushanka',dateofbirth:new Date(),phoneno:'+947105795540',gender:'Male',address:'simple address2',levelid:2},
-
-];
+const EXAMPLE_DATA: EmployeesTableItem[] = [];
 
 /**
  * Data source for the MydataTable view. This class should
@@ -83,8 +79,8 @@ export class EmployeesTableDataSource extends DataSource<EmployeesTableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'firstname': return compare(a.firstname, b.firstname, isAsc);
-        case 'nic': return compare(+a.nic, +b.nic, isAsc);
+        case 'firstname': return compare(a.NIC, b.NIC, isAsc);
+        case 'nic': return compare(+a.FName, +b.FName, isAsc);
         default: return 0;
       }
     });
