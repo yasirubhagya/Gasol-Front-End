@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { EmployeesTableDataSource, EmployeesTableItem } from './employees-table-datasource';
-
+import { DbService } from '../../services/db.service'
 @Component({
   selector: 'employees-table',
   templateUrl: './employees.component.html',
@@ -13,24 +13,28 @@ export class EmployeesComponent implements OnInit {
   dataSource: MatTableDataSource<EmployeesTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['nic', 'firstname', 'lastname', 'dateofbirth', 'phoneno', 'gender', 'address', 'levelid', 'actions'];
+  displayedColumns = ['NIC', 'FName', 'LName', 'DOB', 'PhoneNumber', 'Gender', 'Address', 'LevelId', 'actions'];
 
   tempEmpItem: EmployeesTableItem;
-  isexpanded=false;
+  isexpanded = false;
+  updateMod = false;
 
-  constructor() {
+  constructor(private dbconn: DbService) {
     // Create 100 users
-    const EXAMPLE_DATA: EmployeesTableItem[] = [
-      { nic: '950552212v', firstname: 'yasiru', lastname: 'bhagya', dateofbirth: new Date(), phoneno: '+94710579840', gender: 'Male', address: 'simple address', levelid: 1 },
-      { nic: '961881072v', firstname: 'prasad', lastname: 'madushanka', dateofbirth: new Date(), phoneno: '+947105795540', gender: 'Male', address: 'simple address2', levelid: 2 },
-
-    ];
-    this.tempEmpItem = {nic: '', firstname: '', lastname: '', dateofbirth: new Date(), phoneno: '', gender: '', address: '', levelid: 0 };
+    let EXAMPLE_DATA: EmployeesTableItem[] = [];
+    this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
+    this.dbconn.getEmployees().subscribe(res => {
+      this.dataSource.data = res;
+      this.dataSource._updateChangeSubscription();
+
+    });
+
   }
 
   ngOnInit() {
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -43,21 +47,58 @@ export class EmployeesComponent implements OnInit {
     }
   }
 
-  updateItem(dataRow: EmployeesTableItem) {
+  insertItem(empItem: EmployeesTableItem) {
+    this.dbconn.insertEmployee(empItem).subscribe(res => {
+      this.dbconn.getEmployees().subscribe(res => {
+        this.dataSource.data = res;
+        this.dataSource._updateChangeSubscription();
+        this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+        this.isexpanded = false;
+      });
+    });
+
+
+  }
+
+  enableUpdateMod(dataRow: EmployeesTableItem) {
     this.tempEmpItem = dataRow;
-    this.isexpanded =true;
+    this.updateMod = true;
+    this.isexpanded = true;
+  }
+
+  updateItem(dataRow: EmployeesTableItem) {
+
+    this.dbconn.updateEmployee(dataRow).subscribe(res => {
+      this.dbconn.getEmployees().subscribe(res => {
+        this.dataSource.data = res;
+        this.dataSource._updateChangeSubscription();
+        this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+        this.isexpanded = false;
+        this.updateMod = false;
+      });
+    });
+
     console.log(dataRow);
   }
 
   deleteItem(dataRow: EmployeesTableItem) {
-    console.log(dataRow);
-    var i = this.dataSource.data.indexOf(dataRow);
-    this.dataSource.data.splice(i, 1);
-    this.dataSource._updateChangeSubscription()
+    this.dbconn.deleteEmployee(dataRow).subscribe(res => {
+      this.dbconn.getEmployees().subscribe(res => {
+        this.dataSource.data = res;
+        this.dataSource._updateChangeSubscription();
+        this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+        this.isexpanded = false;
+      });
+    });
+
   }
-   
-  commitchanges(){
-    
+
+  cancel() {
+    this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+    this.isexpanded = false;
+    this.updateMod = false;
   }
+
+
 
 }
