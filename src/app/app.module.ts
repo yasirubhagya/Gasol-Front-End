@@ -41,11 +41,6 @@ const appRoutes: Routes = [
 
     },
     {
-        path        : 'forms3',
-        loadChildren: './forms3/forms3.module#Forms3Module'
-
-    },
-    {
         path        : 'calendar',
         loadChildren: './calendar/calendar.module#CalendarModule'
 
