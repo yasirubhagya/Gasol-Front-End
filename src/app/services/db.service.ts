@@ -67,6 +67,22 @@ interface EmployeesTableItem {
     Incoming_Outgoing:boolean
   }
   
+  interface FillingRecordsTableItem{
+    InvoiceID:Number,
+    CustomerID:Number,
+    VehicleNumber:String,
+    OrderNumber:String,
+    FillingDate:Date,
+    Amount:Number,
+    Price:Number,
+  }
+
+  interface ExpenditureTableItem {
+    ID:Number;
+    Name: string;
+    Types:String;
+    Price: Number;
+  }
 
 
 @Injectable({
@@ -174,18 +190,48 @@ export class DbService {
 
 
   getChequeDp(){
-    return this.http.get<ChequeDpTableItem[]>('https://gasoldb.herokuapp.com/api/forms/pump/get_all');
+    return this.http.get<ChequeDpTableItem[]>('https://gasoldb.herokuapp.com/api/forms/cheque/get_all');
   }
 
   insertChequeDp(chequeDp:ChequeDpTableItem){
-    return this.http.post<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/insert',chequeDp);
+    return this.http.post<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/cheque/insert',chequeDp);
   }
   updateChequeDp(chequeDp:ChequeDpTableItem){
-    return this.http.post<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/update',chequeDp);
+    return this.http.post<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/cheque/update',chequeDp);
   }
 
   deleteChequeDp(chequeDp:ChequeDpTableItem){
-    return this.http.delete<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/delete/'+chequeDp.ChequeID);
+    return this.http.delete<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/cheque/delete/'+chequeDp.ChequeID);
+  }
+
+  getFillingRecords(){
+    return this.http.get<FillingRecordsTableItem[]>('https://gasoldb.herokuapp.com/api/forms/fillingRecords/get_all');
+  }
+
+  insertFillingRecords(filling:FillingRecordsTableItem){
+    return this.http.post<FillingRecordsTableItem>('https://gasoldb.herokuapp.com/api/forms/fillingRecords/insert',filling);
+  }
+  updateFillingRecords(filling:FillingRecordsTableItem){
+    return this.http.post<FillingRecordsTableItem>('https://gasoldb.herokuapp.com/api/forms/fillingRecords/update',filling);
+  }
+
+  deleteFillingRecords(filling:FillingRecordsTableItem){
+    return this.http.delete<FillingRecordsTableItem>('https://gasoldb.herokuapp.com/api/forms/fillingRecords/delete/'+filling.InvoiceID);
+  }
+
+  getExpenditure(){
+    return this.http.get<ExpenditureTableItem[]>('https://gasoldb.herokuapp.com/api/forms/otherExpenditures/get_all');
+  }
+
+  insertExpenditure(expen:ExpenditureTableItem){
+    return this.http.post<ExpenditureTableItem>('https://gasoldb.herokuapp.com/api/forms/otherExpenditures/insert',expen);
+  }
+  updateExpenditure(expen:ExpenditureTableItem){
+    return this.http.post<ExpenditureTableItem>('https://gasoldb.herokuapp.com/api/forms/otherExpenditures/update',expen);
+  }
+
+  deleteExpenditure(expen:ExpenditureTableItem){
+    return this.http.delete<ExpenditureTableItem>('https://gasoldb.herokuapp.com/api/forms/otherExpenditures/delete/'+expen.ID);
   }
 
 

@@ -15,7 +15,7 @@ interface Cheque_RecievedTableItem{
 }
 
 @Component({
-  selector: 'chequedp-table',
+  selector: 'chequeRD-table',
   templateUrl: './Cheque-Recieved.component.html',
   styleUrls: ['./Cheque-Recieved.component.scss']
 })

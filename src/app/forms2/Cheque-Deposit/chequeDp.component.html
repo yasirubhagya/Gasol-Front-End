@@ -15,26 +15,29 @@
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <mat-form-field>
-                            <input matInput [disabled] ="updateMod" placeholder="CustomerID" [(ngModel)]="tempCustomerItem.CustomerID">
+                            <input matInput [disabled] ="updateMod" placeholder="ItemID" [(ngModel)]="tempChequeDPItem.ItemID">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="CompanyName" [(ngModel)]="tempCustomerItem.CompanyName">
+                            <input matInput placeholder="ChequeID" [(ngModel)]="tempChequeDPItem.ChequeID">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Threshold" [(ngModel)]="tempCustomerItem.Threshold">
+                            <input matInput placeholder="Amount" [(ngModel)]="tempChequeDPItem.Amount">
                         </mat-form-field>
     
                         <mat-form-field>
-                            <input matInput  placeholder="PhoneNumber" [(ngModel)]="tempCustomerItem.PhoneNumber">
+                            <input matInput  placeholder="ReceivedDate" [(ngModel)]="tempChequeDPItem.ReceivedDate">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Address" [(ngModel)]="tempCustomerItem.Address">
+                            <input matInput placeholder="ExpireDate" [(ngModel)]="tempChequeDPItem.ExpireDate">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Incoming_Outgoing" [(ngModel)]="tempChequeDPItem.Incoming_Outgoing">
                         </mat-form-field>
                         
                         <mat-action-row>
                             <button mat-button color="error" (click)="cancel()">Cancel</button>
-                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempCustomerItem)">Update</button>
-                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempCustomerItem)">Insert</button>
+                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempChequeDPItem)">Update</button>
+                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempChequeDPItem)">Insert</button>
                         </mat-action-row>
                     </mat-expansion-panel>
                 </mat-accordion>
@@ -44,37 +47,38 @@
     
                 <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
                     <!-- Id Column -->
-                    <ng-container matColumnDef="CustomerID">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>CustomerID</th>
-                        <td mat-cell *matCellDef="let row">{{row.CustomerID}}</td>
+                    <ng-container matColumnDef="ItemID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ItemID</th>
+                        <td mat-cell *matCellDef="let row">{{row.ItemID}}</td>
                     </ng-container>
     
                     <!-- FirstName Column -->
-                    <ng-container matColumnDef="CompanyName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>CompanyName</th>
-                        <td mat-cell *matCellDef="let row">
-                            {{row.CompanyName}}
-                        </td>
+                    <ng-container matColumnDef="ChequeID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cheque ID</th>
+                        <td mat-cell *matCellDef="let row">{{row.ChequeID}}</td>
                     </ng-container>
     
                     <!-- LastName Column -->
-                    <ng-container matColumnDef="Threshold">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Threshold</th>
-                        <td mat-cell *matCellDef="let row">{{row.Threshold}}</td>
+                    <ng-container matColumnDef="Amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                        <td mat-cell *matCellDef="let row">{{row.Amount}}</td>
                     </ng-container>
     
                     <!-- dateofbirth Column -->
-                    <ng-container matColumnDef="PhoneNumber">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PhoneNumber</th>
-                        <td mat-cell *matCellDef="let row">{{row.PhoneNumber}}</td>
+                    <ng-container matColumnDef="ReceivedDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ReceivedDate</th>
+                        <td mat-cell *matCellDef="let row">{{row.ReceivedDate}}</td>
                     </ng-container>
     
                     <!-- phoneno Column -->
-                    <ng-container matColumnDef="Address">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-                        <td mat-cell *matCellDef="let row">{{row.Address}}</td>
+                    <ng-container matColumnDef="ExpireDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Expire Date</th>
+                        <td mat-cell *matCellDef="let row">{{row.ExpireDate}}</td>
                     </ng-container>
-    
+                    <ng-container matColumnDef="Incoming_Outgoing">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Received/Issued</th>
+                        <td mat-cell *matCellDef="let row">{{row.Incoming_Outgoing}}</td>
+                    </ng-container>
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>actions</th>
                         <td mat-cell *matCellDef="let row">

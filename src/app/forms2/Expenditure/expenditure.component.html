@@ -15,23 +15,23 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-form-field>
-                        <input matInput [disabled] ="updateMod" placeholder="FuelID" [(ngModel)]="tempFuelItem.FuelID">
+                        <input matInput [disabled] ="updateMod" placeholder="FuelID" [(ngModel)]="tempExpenditureItem.FuelID">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Name" [(ngModel)]="tempFuelItem.Name">
+                        <input matInput placeholder="Name" [(ngModel)]="tempExpenditureItem.Name">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Commision" [(ngModel)]="tempFuelItem.Commision">
+                        <input matInput placeholder="Commision" [(ngModel)]="tempExpenditureItem.Commision">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Price" [(ngModel)]="tempFuelItem.Price">
+                        <input matInput placeholder="Price" [(ngModel)]="tempExpenditureItem.Price">
                     </mat-form-field>
 
                     
                     <mat-action-row>
                         <button mat-button color="error" (click)="cancel()">Cancel</button>
-                        <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempFuelItem)">Update</button>
-                        <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempFuelItem)">Insert</button>
+                        <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempExpenditureItem)">Update</button>
+                        <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempExpenditureItem)">Insert</button>
                     </mat-action-row>
                 </mat-expansion-panel>
             </mat-accordion>
