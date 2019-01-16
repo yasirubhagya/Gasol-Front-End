@@ -8,33 +8,26 @@
                 <mat-expansion-panel [(expanded)]="isexpanded">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Tank data
+                            Pump data
                         </mat-panel-title>
                         <mat-panel-description>
                             add/edit data
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-form-field>
-                        <input matInput [disabled] ="updateMod" placeholder="Tank ID" [(ngModel)]="tempTankItem.TankID">
+                        <input matInput [disabled] ="updateMod" placeholder="Pump ID" [(ngModel)]="temppumpItem.PumpID">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Capacity" [(ngModel)]="tempTankItem.Capacity">
+                        <input matInput placeholder="Tank ID" [(ngModel)]="temppumpItem.TankID">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Resovoir" [(ngModel)]="tempTankItem.Resovoir">
+                        <input matInput placeholder="Label" [(ngModel)]="temppumpItem.Label">
                     </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Fuel ID" [(ngModel)]="tempTankItem.Fuel_ID">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Label" [(ngModel)]="tempTankItem.Label">
-                    </mat-form-field>
-
-                    
+                   
                     <mat-action-row>
                         <button mat-button color="error" (click)="cancel()">Cancel</button>
-                        <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempTankItem)">Update</button>
-                        <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempTankItem)">Insert</button>
+                        <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(temppumpItem)">Update</button>
+                        <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(temppumpItem)">Insert</button>
                     </mat-action-row>
                 </mat-expansion-panel>
             </mat-accordion>
@@ -44,35 +37,26 @@
 
             <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
                 <!-- Id Column -->
-                <ng-container matColumnDef="TankID">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tank ID</th>
-                    <td mat-cell *matCellDef="let trow">{{trow.TankID}}</td>
+                <ng-container matColumnDef="PumpID">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Pump ID</th>
+                    <td mat-cell *matCellDef="let trow">{{trow.PumpID}}</td>
                 </ng-container>
 
                 <!-- FirstName Column -->
-                <ng-container matColumnDef="Capacity">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Capacity</th>
+                <ng-container matColumnDef="TankID">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tank ID</th>
                     <td mat-cell *matCellDef="let trow">
-                        {{trow.Capacity}}
+                        {{trow.TankID}}
                     </td>
                 </ng-container>
 
                 <!-- LastName Column -->
-                <ng-container matColumnDef="Resovoir">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Resovoir</th>
-                    <td mat-cell *matCellDef="let trow">{{trow.Resovoir}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="Fuel_ID">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fuel ID</th>
-                    <td mat-cell *matCellDef="let trow">{{trow.Fuel_ID}}</td>
-                </ng-container>
-
                 <ng-container matColumnDef="Label">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Label</th>
                     <td mat-cell *matCellDef="let trow">{{trow.Label}}</td>
                 </ng-container>
 
+               
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef>actions</th>
                     <td mat-cell *matCellDef="let trow">

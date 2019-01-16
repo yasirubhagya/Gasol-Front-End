@@ -2,37 +2,35 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import {DbService} from '../../services/db.service';
 
-interface FuelTypeTableItem {
-  FuelID:Number;
-  Name: string;
-  Commision:Number;
-  Price: Number;
+interface PumpsTableItem {
+  PumpID:Number,
+  TankID: Number,
+  Label:String
 }
 
 @Component({
-  selector: 'fueltype-table',
-  templateUrl: './fueltype.component.html',
-  styleUrls: ['./fueltype.component.scss']
+  selector: 'pump-table',
+  templateUrl: './pumps.component.html',
+  styleUrls: ['./pumps.component.scss']
 })
-export class FuelTypeComponent implements OnInit {
+export class PumpsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<FuelTypeTableItem>;
+  dataSource: MatTableDataSource<PumpsTableItem >;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
- displayedColumns = ['FuelID', 'Name', 'Commision','Price','actions'];
+  displayedColumns = ['PumpID', 'TankID', 'Label','actions'];
 
-  tempFuelItem: FuelTypeTableItem;
+  temppumpItem: PumpsTableItem ;
   isexpanded = false;
   updateMod = false;
 
   constructor(private dbconn: DbService) {
-    // Create 100 users
-   
-    this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+    
+    this.temppumpItem = { PumpID: 0, TankID: 0, Label: ''};
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource([]);
-    this.dbconn.getFuelTypes().subscribe(res => {
+    this.dbconn.getPumps().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource._updateChangeSubscription();
 
@@ -54,12 +52,12 @@ export class FuelTypeComponent implements OnInit {
     }
   }
 
-  insertItem(fuelItem: FuelTypeTableItem) {
-    this.dbconn.insertFuelTypes(fuelItem).subscribe(res => {
-      this.dbconn.getFuelTypes().subscribe(res => {
+  insertItem(pumpItem: PumpsTableItem ) {
+    this.dbconn.insertPumps(pumpItem).subscribe(res => {
+      this.dbconn.getPumps().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+        this.temppumpItem = { PumpID: 0, TankID: 0, Label: ''};
         this.isexpanded = false;
       });
     });
@@ -67,33 +65,31 @@ export class FuelTypeComponent implements OnInit {
 
   }
 
-  enableUpdateMod(dataRow: FuelTypeTableItem) {
-    this.tempFuelItem = { FuelID: dataRow.FuelID, Name: dataRow.Name, Commision: dataRow.Commision,Price:dataRow.Price};
+  enableUpdateMod(dataRow: PumpsTableItem ) {
+    this.temppumpItem = { PumpID:dataRow.PumpID, TankID: dataRow.TankID, Label:dataRow.Label};
     this.updateMod = true;
     this.isexpanded = true;
   }
 
-  updateItem(dataRow: FuelTypeTableItem) {
+  updateItem(dataRow: PumpsTableItem ) {
 
-    this.dbconn.updateFuelTypes(dataRow).subscribe(res => {
-      this.dbconn.getFuelTypes().subscribe(res => {
+    this.dbconn.updatePumps(dataRow).subscribe(res => {
+      this.dbconn.getPumps().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+        this.temppumpItem = { PumpID: 0, TankID: 0, Label: ''};
         this.isexpanded = false;
         this.updateMod = false;
       });
     });
-
-    console.log(dataRow);
   }
 
-  deleteItem(dataRow: FuelTypeTableItem) {
-    this.dbconn.deleteFuelTypes(dataRow).subscribe(res => {
-      this.dbconn.getFuelTypes().subscribe(res => {
+  deleteItem(dataRow: PumpsTableItem ) {
+    this.dbconn.deletePumps(dataRow).subscribe(res => {
+      this.dbconn.getPumps().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+        this.temppumpItem = { PumpID: 0, TankID: 0, Label: ''};
         this.isexpanded = false;
       });
     });
@@ -101,7 +97,7 @@ export class FuelTypeComponent implements OnInit {
   }
 
   cancel() {
-    this.tempFuelItem = { FuelID: 0, Name: '', Commision: 0,Price:0 };
+    this.temppumpItem = { PumpID: 0, TankID: 0, Label: ''};
     this.isexpanded = false;
     this.updateMod = false;
   }

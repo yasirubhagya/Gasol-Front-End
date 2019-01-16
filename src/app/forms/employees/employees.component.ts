@@ -1,7 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { EmployeesTableDataSource, EmployeesTableItem } from './employees-table-datasource';
 import { DbService } from '../../services/db.service'
+
+interface EmployeesTableItem {
+  NIC: String,
+  FName: String,
+  LName: String,
+  DOB:Date,
+  PhoneNumber:String,
+  Gender: String,
+  Address: String,
+  LevelId: Number
+}
+
 @Component({
   selector: 'employees-table',
   templateUrl: './employees.component.html',
@@ -13,18 +24,18 @@ export class EmployeesComponent implements OnInit {
   dataSource: MatTableDataSource<EmployeesTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['NIC', 'FName', 'LName', 'DOB', 'PhoneNumber', 'Gender', 'Address', 'LevelId', 'actions'];
+ displayedColumns = ['NIC', 'FName', 'LName', 'DOB', 'PhoneNumber', 'Gender', 'Address', 'LevelId', 'actions'];
 
-  tempEmpItem: EmployeesTableItem;
-  isexpanded = false;
-  updateMod = false;
+ tempEmpItem: EmployeesTableItem;
+ isexpanded = false;
+ updateMod = false;
 
   constructor(private dbconn: DbService) {
     // Create 100 users
-    let EXAMPLE_DATA: EmployeesTableItem[] = [];
+  
     this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
+    this.dataSource = new MatTableDataSource([]);
     this.dbconn.getEmployees().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource._updateChangeSubscription();

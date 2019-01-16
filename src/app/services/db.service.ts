@@ -46,7 +46,14 @@ interface EmployeesTableItem {
     TankID:Number,
     Capacity: Number,
     Resovoir:Number,
-    FuelID: Number,
+    Fuel_ID: Number,
+    Label:String
+  }
+
+
+  interface PumpsTableItem {
+    PumpID:Number,
+    TankID: Number,
     Label:String
   }
 
@@ -125,18 +132,33 @@ export class DbService {
 
 
   getTanks(){
-    return this.http.get<TankTableItem[]>('https://gasoldb.herokuapp.com/api/forms/fuel_type/get_all');
+    return this.http.get<TankTableItem[]>('https://gasoldb.herokuapp.com/api/forms/tank/get_all');
   }
 
   insertTanks(tank:TankTableItem){
-    return this.http.post<TankTableItem>('https://gasoldb.herokuapp.com/api/forms/fuel_type/insert',tank);
+    return this.http.post<TankTableItem>('https://gasoldb.herokuapp.com/api/forms/tank/insert',tank);
   }
   updateTanks(tank:TankTableItem){
-    return this.http.post<TankTableItem>('https://gasoldb.herokuapp.com/api/forms/fuel_type/update',tank);
+    return this.http.post<TankTableItem>('https://gasoldb.herokuapp.com/api/forms/tank/update',tank);
   }
 
   deleteTanks(tank:TankTableItem){
-    return this.http.delete<TankTableItem>('https://gasoldb.herokuapp.com/api/forms/fuel_type/delete/'+tank.TankID);
+    return this.http.delete<TankTableItem>('https://gasoldb.herokuapp.com/api/forms/tank/delete/'+tank.TankID);
+  }
+  
+  getPumps(){
+    return this.http.get<PumpsTableItem[]>('https://gasoldb.herokuapp.com/api/forms/pump/get_all');
+  }
+
+  insertPumps(pump:PumpsTableItem){
+    return this.http.post<PumpsTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/insert',pump);
+  }
+  updatePumps(pump:PumpsTableItem){
+    return this.http.post<PumpsTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/update',pump);
+  }
+
+  deletePumps(pump:PumpsTableItem){
+    return this.http.delete<PumpsTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/delete/'+pump.PumpID);
   }
 
 

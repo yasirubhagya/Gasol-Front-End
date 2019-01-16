@@ -18,8 +18,6 @@ import {AppComponent} from 'app/app.component';
 import { FakeDbService } from 'app/fake-db/fake-db.service';
 import { LayoutModule } from 'app/layout/layout.module';
 
-import{DbService} from './services/db.service';
-
 const appRoutes: Routes = [
    
     {
@@ -120,7 +118,7 @@ const appRoutes: Routes = [
         LayoutModule,
         
     ],
-    providers:[DbService],
+   
     
     bootstrap   : [
         AppComponent

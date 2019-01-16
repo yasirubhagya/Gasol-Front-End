@@ -18,21 +18,21 @@ interface CustomerTableItem{
 export class CustomersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<CustomerTableItem>;
+  private dataSource: MatTableDataSource<CustomerTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['CustomerID', 'CompanyName', 'Threshold', 'PhoneNumber', 'Address', 'actions'];
 
-  tempCustomerItem: CustomerTableItem;
-  isexpanded = false;
-  updateMod = false;
+   tempCustomerItem: CustomerTableItem;
+   isexpanded = false;
+   updateMod = false;
 
   constructor(private dbconn: DbService) {
     // Create 100 users
-    let EXAMPLE_DATA: CustomerTableItem[] = [];
+    
     this.tempCustomerItem = { CustomerID: 0, CompanyName: '', Threshold: 0, PhoneNumber: '', Address: '' };
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
+    this.dataSource = new MatTableDataSource([]);
     this.dbconn.getCustomers().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource._updateChangeSubscription();

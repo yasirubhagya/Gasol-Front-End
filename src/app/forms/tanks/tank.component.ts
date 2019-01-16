@@ -6,7 +6,7 @@ interface TankTableItem {
   TankID:Number,
   Capacity: Number,
   Resovoir:Number,
-  FuelID: Number,
+  Fuel_ID: Number,
   Label:String
 }
 
@@ -21,18 +21,17 @@ export class TankComponent implements OnInit {
   dataSource: MatTableDataSource<TankTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  private displayedColumns = ['TankID', 'Capacity', 'Resovoir','FuelID','Label','actions'];
+  displayedColumns = ['TankID', 'Capacity', 'Resovoir','Fuel_ID','Label','actions'];
 
-  private tempTankItem: TankTableItem;
-  private isexpanded = false;
-  private updateMod = false;
+  tempTankItem: TankTableItem;
+  isexpanded = false;
+  updateMod = false;
 
   constructor(private dbconn: DbService) {
-    // Create 100 users
-    let EXAMPLE_DATA: TankTableItem[] = [];
-    this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,FuelID:0 ,Label:''};
+    
+    this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,Fuel_ID:0 ,Label:''};
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
+    this.dataSource = new MatTableDataSource([]);
     this.dbconn.getTanks().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource._updateChangeSubscription();
@@ -55,12 +54,12 @@ export class TankComponent implements OnInit {
     }
   }
 
-  insertItem(fuelItem: TankTableItem) {
-    this.dbconn.insertTanks(fuelItem).subscribe(res => {
+  insertItem(tankItem: TankTableItem) {
+    this.dbconn.insertTanks(tankItem).subscribe(res => {
       this.dbconn.getTanks().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,FuelID:0 ,Label:''};
+        this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,Fuel_ID:0 ,Label:''};
         this.isexpanded = false;
       });
     });
@@ -69,7 +68,7 @@ export class TankComponent implements OnInit {
   }
 
   enableUpdateMod(dataRow: TankTableItem) {
-    this.tempTankItem = { TankID: dataRow.TankID, Capacity:dataRow.Capacity, Resovoir: dataRow.Resovoir,FuelID:dataRow.FuelID ,Label:dataRow.Label};
+    this.tempTankItem = { TankID: dataRow.TankID, Capacity:dataRow.Capacity, Resovoir: dataRow.Resovoir,Fuel_ID:dataRow.Fuel_ID ,Label:dataRow.Label};
     this.updateMod = true;
     this.isexpanded = true;
   }
@@ -80,7 +79,7 @@ export class TankComponent implements OnInit {
       this.dbconn.getTanks().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,FuelID:0 ,Label:''};
+        this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,Fuel_ID:0 ,Label:''};
         this.isexpanded = false;
         this.updateMod = false;
       });
@@ -92,7 +91,7 @@ export class TankComponent implements OnInit {
       this.dbconn.getTanks().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,FuelID:0 ,Label:''};
+        this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,Fuel_ID:0 ,Label:''};
         this.isexpanded = false;
       });
     });
@@ -100,7 +99,7 @@ export class TankComponent implements OnInit {
   }
 
   cancel() {
-    this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,FuelID:0 ,Label:''};
+    this.tempTankItem = { TankID: 0, Capacity:0, Resovoir: 0,Fuel_ID:0 ,Label:''};
     this.isexpanded = false;
     this.updateMod = false;
   }
