@@ -13,9 +13,9 @@ interface ChequeDpTableItem{
 }
 
 @Component({
-  selector: 'customers-table',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss']
+  selector: 'chequedp-table',
+  templateUrl: './chequeDp.component.html',
+  styleUrls: ['./chequeDp.component.scss']
 })
 export class chequeDpComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -24,14 +24,14 @@ export class chequeDpComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['ItemID', 'ChequeID', 'CompanyName', 'Amount', 'ReceivedDate','ExpireDate','Incoming_Outgoing', 'actions'];
 
-   tempCustomerItem: ChequeDpTableItem;
+   tempChequeDPItem: ChequeDpTableItem;
    isexpanded = false;
    updateMod = false;
 
   constructor(private dbconn: DbService) {
     // Create 100 users
     
-    this.tempCustomerItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
+    this.tempChequeDPItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource([]);
     this.dbconn.getChequeDp().subscribe(res => {
@@ -60,7 +60,7 @@ export class chequeDpComponent implements OnInit {
       this.dbconn.getChequeDp().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempCustomerItem = { CustomerID: 0, CompanyName: '', Threshold: 0, PhoneNumber: '', Address: '' };
+        this.tempChequeDPItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
         this.isexpanded = false;
       });
     });
@@ -69,7 +69,7 @@ export class chequeDpComponent implements OnInit {
   }
 
   enableUpdateMod(dataRow: ChequeDpTableItem) {
-    this.tempCustomerItem = { CustomerID: dataRow.CustomerID, CompanyName: dataRow.CompanyName, Threshold: dataRow.Threshold, PhoneNumber: dataRow.PhoneNumber, Address: dataRow.Address };
+    this.tempChequeDPItem = { ItemID: dataRow.ItemID, ChequeID: dataRow.ChequeID, CompanyName: dataRow.CompanyName, Amount: dataRow.Amount, ReceivedDate: dataRow.ReceivedDate,ExpireDate:dataRow.ExpireDate,Incoming_Outgoing:dataRow.Incoming_Outgoing };
     this.updateMod = true;
     this.isexpanded = true;
   }
@@ -80,7 +80,7 @@ export class chequeDpComponent implements OnInit {
       this.dbconn.getChequeDp().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempCustomerItem = { CustomerID: 0, CompanyName: '', Threshold: 0, PhoneNumber: '', Address: '' };
+        this.tempChequeDPItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
         this.isexpanded = false;
         this.updateMod = false;
       });
@@ -90,11 +90,11 @@ export class chequeDpComponent implements OnInit {
   }
 
   deleteItem(dataRow: ChequeDpTableItem) {
-    this.dbconn.deleteCustomer(dataRow).subscribe(res => {
-      this.dbconn.getCustomers().subscribe(res => {
+    this.dbconn.deleteChequeDp(dataRow).subscribe(res => {
+      this.dbconn.getChequeDp().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempCustomerItem = { CustomerID: 0, CompanyName: '', Threshold: 0, PhoneNumber: '', Address: '' };
+        this.tempChequeDPItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
         this.isexpanded = false;
       });
     });
@@ -102,7 +102,7 @@ export class chequeDpComponent implements OnInit {
   }
 
   cancel() {
-    this.tempCustomerItem = { CustomerID: 0, CompanyName: '', Threshold: 0, PhoneNumber: '', Address: '' };
+    this.tempChequeDPItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
     this.isexpanded = false;
     this.updateMod = false;
   }

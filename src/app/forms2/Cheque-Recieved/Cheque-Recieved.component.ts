@@ -1,45 +1,44 @@
+
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { DbService } from '../../services/db.service'
 
-interface Cheque-RecievedTableItem {
-  NIC: String,
-  FName: String,
-  LName: String,
-  DOB:Date,
-  PhoneNumber:String,
-  Gender: String,
-  Address: String,
-  LevelId: Number
+interface Cheque_RecievedTableItem{
+  ItemID:Number,
+  ChequeID:Number,
+  CompanyName:String,
+  Amount:Number,
+  ReceivedDate:Date,
+  ExpireDate:Date,
+  Incoming_Outgoing:boolean
 }
 
 @Component({
-  selector: 'Cheque-Recieved-table',
+  selector: 'chequedp-table',
   templateUrl: './Cheque-Recieved.component.html',
   styleUrls: ['./Cheque-Recieved.component.scss']
 })
-export class Cheque-RecievedComponent implements OnInit {
+export class Cheque_RecievedComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<Cheque-RecievedTableItem>;
-
+  private dataSource: MatTableDataSource<Cheque_RecievedTableItem>
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
- displayedColumns = ['NIC', 'FName', 'LName', 'DOB', 'PhoneNumber', 'Gender', 'Address', 'LevelId', 'actions'];
+  displayedColumns = ['ItemID', 'ChequeID', 'CompanyName', 'Amount', 'ReceivedDate','ExpireDate','Incoming_Outgoing', 'actions'];
 
- tempEmpItem: Cheque-RecievedTableItem;
- isexpanded = false;
- updateMod = false;
+   tempCheque_RecievedItem: Cheque_RecievedTableItem;
+   isexpanded = false;
+   updateMod = false;
 
   constructor(private dbconn: DbService) {
     // Create 100 users
-  
-    this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+    
+    this.tempCheque_RecievedItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource([]);
-    this.dbconn.getEmployees().subscribe(res => {
+    this.dbconn.getChequeDp().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource._updateChangeSubscription();
-
     });
 
   }
@@ -58,12 +57,12 @@ export class Cheque-RecievedComponent implements OnInit {
     }
   }
 
-  insertItem(empItem: EmployeesTableItem) {
-    this.dbconn.insertEmployee(empItem).subscribe(res => {
-      this.dbconn.getEmployees().subscribe(res => {
+  insertItem(cusItem: Cheque_RecievedTableItem) {
+    this.dbconn.insertChequeDp(cusItem).subscribe(res => {
+      this.dbconn.getChequeDp().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+        this.tempCheque_RecievedItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
         this.isexpanded = false;
       });
     });
@@ -71,19 +70,19 @@ export class Cheque-RecievedComponent implements OnInit {
 
   }
 
-  enableUpdateMod(dataRow: EmployeesTableItem) {
-    this.tempEmpItem = { NIC: dataRow.NIC, FName: dataRow.FName, LName: dataRow.LName, DOB: dataRow.DOB, PhoneNumber: dataRow.PhoneNumber, Gender: dataRow.Gender, Address: dataRow.Address, LevelId: dataRow.LevelId };
+  enableUpdateMod(dataRow: Cheque_RecievedTableItem) {
+    this.tempCheque_RecievedItem = { ItemID: dataRow.ItemID, ChequeID: dataRow.ChequeID, CompanyName: dataRow.CompanyName, Amount: dataRow.Amount, ReceivedDate: dataRow.ReceivedDate,ExpireDate:dataRow.ExpireDate,Incoming_Outgoing:dataRow.Incoming_Outgoing };
     this.updateMod = true;
     this.isexpanded = true;
   }
 
-  updateItem(dataRow: EmployeesTableItem) {
+  updateItem(dataRow: Cheque_RecievedTableItem) {
 
-    this.dbconn.updateEmployee(dataRow).subscribe(res => {
-      this.dbconn.getEmployees().subscribe(res => {
+    this.dbconn.updateChequeDp(dataRow).subscribe(res => {
+      this.dbconn.getChequeDp().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+        this.tempCheque_RecievedItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
         this.isexpanded = false;
         this.updateMod = false;
       });
@@ -92,12 +91,12 @@ export class Cheque-RecievedComponent implements OnInit {
     console.log(dataRow);
   }
 
-  deleteItem(dataRow: EmployeesTableItem) {
-    this.dbconn.deleteEmployee(dataRow).subscribe(res => {
-      this.dbconn.getEmployees().subscribe(res => {
+  deleteItem(dataRow: Cheque_RecievedTableItem) {
+    this.dbconn.deleteChequeDp(dataRow).subscribe(res => {
+      this.dbconn.getChequeDp().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource._updateChangeSubscription();
-        this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+        this.tempCheque_RecievedItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
         this.isexpanded = false;
       });
     });
@@ -105,7 +104,7 @@ export class Cheque-RecievedComponent implements OnInit {
   }
 
   cancel() {
-    this.tempEmpItem = { NIC: '', FName: '', LName: '', DOB: new Date(), PhoneNumber: '', Gender: '', Address: '', LevelId: 0 };
+    this.tempCheque_RecievedItem = { ItemID: 0, ChequeID: 0, CompanyName: '', Amount: 0, ReceivedDate: new Date(),ExpireDate:new Date(),Incoming_Outgoing:true };
     this.isexpanded = false;
     this.updateMod = false;
   }
