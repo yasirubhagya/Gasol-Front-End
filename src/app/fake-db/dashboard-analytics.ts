@@ -107,8 +107,9 @@ export class AnalyticsDashboardDb
             chartType : 'bar',
             datasets  : [
                 {
-                    label: 'Conversion',
-                    data : [221, 428, 492, 471, 413]
+                    
+                    data : [10210, 14028, 19952, 9071, 4013],
+                    label: 'Current Volume (l)'
                 }
             ],
             labels    : ['Disel Tank 1', 'Disel Tank 2', 'Petrol (90C)', 'Petrol (95C)', 'Kerosene'],
@@ -140,17 +141,18 @@ export class AnalyticsDashboardDb
                     ],
                     yAxes: [
                         {
-                            display: true,
+                            display: false,
                             ticks  : {
-                                min: 100,
-                                max: 500
+                                min     : 0,
+                                max     : 20000,
+                                stepSize: 2000
                             }
                         }
                     ]
                 }
             }
         },
-        widget3: {
+        /* widget3: {
             impressions: {
                 value   : '87k',
                 ofTarget: 12
@@ -262,7 +264,7 @@ export class AnalyticsDashboardDb
                     ]
                 }
             }
-        },
+        }, */
         widget5: {
             chartType: 'line',
             datasets : {
@@ -295,13 +297,13 @@ export class AnalyticsDashboardDb
                 'today'    : [
                     {
                         label: 'Petrol (90C)',
-                        data : [5200, 4900, 6900, 5500, 4800, 7200, 5900],
+                        data : [6000, 4800, 3900, 5500, 4150, 6200, 5900],
                         fill : 'start'
 
                     },
                     {
                         label: 'Disel',
-                        data : [1090, 3000, 3040, 2020, 2090, 3900, 2050],
+                        data : [3030, 4520, 6004, 4020, 2090, 1900, 2050],
                         fill : 'start'
 
                     },
