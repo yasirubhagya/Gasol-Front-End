@@ -1,0 +1,138 @@
+<div class="mat-elevation-z8">
+
+
+
+    <mat-card>
+        <mat-card-title>
+            <mat-form-field id="searchbar" class="search-form-field" floatLabel="never">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+            <mat-accordion>
+                <mat-expansion-panel [(expanded)]="isexpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Employee data
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            add/edit data
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <input matInput [disabled] ="updateMod" placeholder="NIC" [(ngModel)]="tempEmpItem.NIC">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="First name" [(ngModel)]="tempEmpItem.FName">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Last name" [(ngModel)]="tempEmpItem.LName">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="tempEmpItem.DOB">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="PhoneNo" [(ngModel)]="tempEmpItem.PhoneNumber">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select placeholder="Gender" [(value)]="tempEmpItem.Gender">
+                            <mat-option value="Male">Male</mat-option>
+                            <mat-option value="Female">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Address" [(ngModel)]="tempEmpItem.Address">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select placeholder="JobTitle" [(value)]="tempEmpItem.LevelId">
+                            <mat-option value="1">Manager</mat-option>
+                            <mat-option value="2">Cleark</mat-option>
+                            <mat-option value="3">Minor</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-action-row>
+                        <button mat-button color="error" (click)="cancel()">Cancel</button>
+                        <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempEmpItem)">Update</button>
+                        <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempEmpItem)">Insert</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </mat-card-title>
+
+        <mat-card-content>
+
+            <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+                <!-- Id Column -->
+                <ng-container matColumnDef="NIC">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>NIC</th>
+                    <td mat-cell *matCellDef="let row">{{row.NIC}}</td>
+                </ng-container>
+
+                <!-- FirstName Column -->
+                <ng-container matColumnDef="FName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</th>
+                    <td mat-cell *matCellDef="let row">
+                        {{row.FName}}
+                    </td>
+                </ng-container>
+
+                <!-- LastName Column -->
+                <ng-container matColumnDef="LName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>LastName</th>
+                    <td mat-cell *matCellDef="let row">{{row.LName}}</td>
+                </ng-container>
+
+                <!-- dateofbirth Column -->
+                <ng-container matColumnDef="DOB">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>DateOfBirth</th>
+                    <td mat-cell *matCellDef="let row">{{row.DOB|date}}</td>
+                </ng-container>
+
+                <!-- phoneno Column -->
+                <ng-container matColumnDef="PhoneNumber">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>PhoneNo</th>
+                    <td mat-cell *matCellDef="let row">{{row.PhoneNumber}}</td>
+                </ng-container>
+
+                <!-- gender Column -->
+                <ng-container matColumnDef="Gender">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+                    <td mat-cell *matCellDef="let row">{{row.Gender}}</td>
+                </ng-container>
+
+                <!-- address Column -->
+                <ng-container matColumnDef="Address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+                    <td mat-cell *matCellDef="let row">{{row.Address}}</td>
+                </ng-container>
+
+                <!-- levelid Column -->
+                <ng-container matColumnDef="LevelId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>LevelId</th>
+                    <td mat-cell *matCellDef="let row">{{row.LevelId}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button (click)="enableUpdateMod(row)">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteItem(row)">
+                            <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="25"
+                [pageSizeOptions]="[10,25, 50, 100, 250]">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>

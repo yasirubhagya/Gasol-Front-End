@@ -1,0 +1,16 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+    .full-width-table {
+        width: 100%;
+      }
+
+    #addnew{
+          margin:10px;
+    }
+      
+    #searchbar{
+        width: 75%;
+    }
+   
+}

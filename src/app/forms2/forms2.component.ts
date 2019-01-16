@@ -6,6 +6,8 @@ import { takeUntil } from 'rxjs/operators';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 
+
+
 @Component({
     selector   : 'forms2',
     templateUrl: './forms2.component.html',

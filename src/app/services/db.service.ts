@@ -57,6 +57,17 @@ interface EmployeesTableItem {
     Label:String
   }
 
+  interface ChequeDpTableItem{
+    ItemID:Number,
+    ChequeID:Number,
+    CompanyName:String,
+    Amount:Number,
+    ReceivedDate:Date,
+    ExpireDate:Date,
+    Incoming_Outgoing:boolean
+  }
+  
+
 
 @Injectable({
   providedIn: 'root'
@@ -159,6 +170,22 @@ export class DbService {
 
   deletePumps(pump:PumpsTableItem){
     return this.http.delete<PumpsTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/delete/'+pump.PumpID);
+  }
+
+
+  getChequeDp(){
+    return this.http.get<ChequeDpTableItem[]>('https://gasoldb.herokuapp.com/api/forms/pump/get_all');
+  }
+
+  insertChequeDp(chequeDp:ChequeDpTableItem){
+    return this.http.post<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/insert',chequeDp);
+  }
+  updateChequeDp(chequeDp:ChequeDpTableItem){
+    return this.http.post<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/update',chequeDp);
+  }
+
+  deleteChequeDp(chequeDp:ChequeDpTableItem){
+    return this.http.delete<ChequeDpTableItem>('https://gasoldb.herokuapp.com/api/forms/pump/delete/'+chequeDp.ChequeID);
   }
 
 

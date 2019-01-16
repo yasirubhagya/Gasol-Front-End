@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit
 
     check(){
 
-        //this.router.navigate(['analytics']);
+        this.router.navigate(['analytics']);
         const user:USER = {
             useremail: this.email,
             userpassword: this.password,
