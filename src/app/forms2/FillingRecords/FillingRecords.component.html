@@ -15,20 +15,26 @@
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <mat-form-field>
-                            <input matInput [disabled] ="updateMod" placeholder="Vehicle Number" [(ngModel)]="tempVehicleItem.VehicleNumber">
+                            <input matInput [disabled] ="updateMod" placeholder="Vehicle Number" [(ngModel)]="tempFillingRecordItem.InvoiceID">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Company ID" [(ngModel)]="tempVehicleItem.CompanyID">
+                            <input matInput placeholder="Company ID" [(ngModel)]="tempFillingRecordItem.VehicleNumber">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Fuel ID" [(ngModel)]="tempVehicleItem.FuelID">
+                            <input matInput placeholder="Fuel ID" [(ngModel)]="tempFillingRecordItem.OrderNumber">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Company ID" [(ngModel)]="tempFillingRecordItem.Amount">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Fuel ID" [(ngModel)]="tempFillingRecordItem.Price">
                         </mat-form-field>
     
                         
                         <mat-action-row>
                             <button mat-button color="error" (click)="cancel()">Cancel</button>
-                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempVehicleItem)">Update</button>
-                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempVehicleItem)">Insert</button>
+                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempFillingRecordItem)">Update</button>
+                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempFillingRecordItem)">Insert</button>
                         </mat-action-row>
                     </mat-expansion-panel>
                 </mat-accordion>
@@ -38,23 +44,35 @@
     
                 <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
                     <!-- Id Column -->
-                    <ng-container matColumnDef="VehicleNumber">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vehicle Number</th>
-                        <td mat-cell *matCellDef="let row">{{row.VehicleNumber}}</td>
+                    <ng-container matColumnDef="InvoiceID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>InvoiceID</th>
+                        <td mat-cell *matCellDef="let row">{{row.InvoiceID}}</td>
                     </ng-container>
     
                     <!-- FirstName Column -->
-                    <ng-container matColumnDef="CompanyID">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Company ID</th>
+                    <ng-container matColumnDef="VehicleNumber">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>VehicleNumber</th>
                         <td mat-cell *matCellDef="let row">
-                            {{row.CompanyID}}
+                            {{row.VehicleNumber}}
                         </td>
                     </ng-container>
     
                     <!-- LastName Column -->
-                    <ng-container matColumnDef="FuelID">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fuel ID</th>
-                        <td mat-cell *matCellDef="let row">{{row.FuelID}}</td>
+                    <ng-container matColumnDef="OrderNumber">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>OrderNumber</th>
+                        <td mat-cell *matCellDef="let row">{{row.OrderNumber}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="FillingDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>FillingDate</th>
+                        <td mat-cell *matCellDef="let row">{{row.FillingDate}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                        <td mat-cell *matCellDef="let row">{{row.Amount}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Price">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+                        <td mat-cell *matCellDef="let row">{{row.price}}</td>
                     </ng-container>
     
                     <ng-container matColumnDef="actions">
