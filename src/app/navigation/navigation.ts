@@ -41,19 +41,19 @@ export const navigation: FuseNavigation[] = [
                 children: [
                     {
                         id: 'form1',
-                        title: 'Form1',
+                        title: 'Static Data',
                         type: 'item',
                         url  : '/forms/'
                     },
                     {
                         id: 'form2',
-                        title: 'Form2',
+                        title: 'Income & Expenditures',
                         type: 'item',
                         url  : '/forms2/'
                     },
                     {
-                        id: 'form2',
-                        title: 'Form2',
+                        id: 'form3',
+                        title: 'Meter Readings',
                         type: 'item',
                         url  : '/forms3/'
                     }

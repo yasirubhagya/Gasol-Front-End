@@ -1,0 +1,141 @@
+<div class="mat-elevation-z8">
+        <mat-card>
+            <mat-card-title>
+                <mat-form-field id="searchbar" class="search-form-field" floatLabel="never">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+                <mat-accordion>
+                    <mat-expansion-panel [(expanded)]="isexpanded">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Inhand data
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                add/edit data
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-form-field>
+                            <input matInput [disabled] ="updateMod" placeholder="TankID" [(ngModel)]="tempInhand.TankID">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Date" [(ngModel)]="tempInhand.Date">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Inhand" [(ngModel)]="tempInhand.Inhand">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput  placeholder="Recieved" [(ngModel)]="tempInhand.Recieved">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Total" [(ngModel)]="tempInhand.Total">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Meter_Reading_Start" [(ngModel)]="tempInhand.Meter_Reading_Start">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Meter_Reading_End" [(ngModel)]="tempInhand.Meter_Reading_End">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Total_Remaining" [(ngModel)]="tempInhand.Total_Remaining">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Balance" [(ngModel)]="tempInhand.Balance">
+                        </mat-form-field>
+
+                        
+                        <mat-action-row>
+                            <button mat-button color="error" (click)="cancel()">Cancel</button>
+                            <button *ngIf="updateMod" mat-button color="primary" (click)="updateItem(tempInhand)">Update</button>
+                            <button *ngIf="!updateMod" mat-button color="primary" (click)="insertItem(tempInhand)">Insert</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </mat-card-title>
+    
+            <mat-card-content>
+    
+                <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="TankID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>TankID</th>
+                        <td mat-cell *matCellDef="let row">{{row.TankID}}</td>
+                    </ng-container>
+    
+                    <!-- Date Column -->
+                    <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                        <td mat-cell *matCellDef="let row">
+                            {{row.Date}}
+                        </td>
+                    </ng-container>
+    
+                    <!-- Inhand Column -->
+                    <ng-container matColumnDef="Inhand">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Inhand</th>
+                        <td mat-cell *matCellDef="let row">{{row.Inhand}}</td>
+                    </ng-container>
+    
+                    <!-- Recieved Column -->
+                    <ng-container matColumnDef="Recieved">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Recieved</th>
+                        <td mat-cell *matCellDef="let row">{{row.Recieved}}</td>
+                    </ng-container>
+    
+                    <!-- Total Column -->
+                    <ng-container matColumnDef="Total">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+                        <td mat-cell *matCellDef="let row">{{row.Total}}</td>
+                    </ng-container>
+
+                    <!-- Total Column -->
+                    <ng-container matColumnDef="Total">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+                        <td mat-cell *matCellDef="let row">{{row.Total}}</td>
+                    </ng-container>
+
+                    <!-- Meter_Reading_Start Column -->
+                    <ng-container matColumnDef="Meter_Reading_Start">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Meter_Reading_Start</th>
+                        <td mat-cell *matCellDef="let row">{{row.Meter_Reading_Start}}</td>
+                    </ng-container>
+
+                    <!-- Meter_Reading_End Column -->
+                    <ng-container matColumnDef="Meter_Reading_End">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Meter_Reading_End</th>
+                        <td mat-cell *matCellDef="let row">{{row.Meter_Reading_End}}</td>
+                    </ng-container>
+
+                    <!-- Total_Remaining Column -->
+                    <ng-container matColumnDef="Total_Remaining">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total_Remaining</th>
+                        <td mat-cell *matCellDef="let row">{{row.Total_Remaining}}</td>
+                    </ng-container>
+
+                     <!--  Balance Column -->
+                     <ng-container matColumnDef=" Balance">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Balance</th>
+                            <td mat-cell *matCellDef="let row">{{row. Balance}}</td>
+                        </ng-container>
+    
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>actions</th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button (click)="enableUpdateMod(row)">
+                                <mat-icon>launch</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="deleteItem(row)">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+    
+                <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="25"
+                    [pageSizeOptions]="[10,25, 50, 100, 250]">
+                </mat-paginator>
+            </mat-card-content>
+        </mat-card>
+    </div>
