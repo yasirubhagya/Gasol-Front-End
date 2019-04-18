@@ -52,8 +52,8 @@ const AppBarStyles = {
         display:'flex',
     },
     logo:{
-        width:'80px',
-        height:'80px',
+        width:'110px',
+        height:'36px',
         margin:'0.25rem'
     }
    
@@ -70,6 +70,7 @@ const MenuBar = (props) => {
                     <div className={classes.placeholder}>
                     <img className={classes.logo} alt='' src={img}/>
                     </div>
+                    <div className={classes.grow}></div>
                     <Typography variant="h4" color="primary">
                         Channel me
                     </Typography>

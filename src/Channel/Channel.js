@@ -23,7 +23,6 @@ import FindDoctor from '../Channel/FindDoctor';
 import FindDate from '../Channel/FindDate';
 import FindPlace from '../Channel/FindPlace';
 import Confirm from '../Channel/Confirm';
-
 const channelStyles = theme => ({
     card: {
         maxWidth: '600px',
@@ -110,6 +109,7 @@ class Channel extends Component {
 
         return (
             <MuiThemeProvider theme={this.theme}>
+              
                 <Card className={classes.card}>
                     <CardHeader title={<Typography variant="h4" color="primary">Place an appointment</Typography>} avatar={
                         <Avatar aria-label="Recipe" className={classes.avatar}>
