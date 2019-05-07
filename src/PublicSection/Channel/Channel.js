@@ -19,10 +19,10 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import lightGreen from '@material-ui/core/colors/lightGreen';
-import FindDoctor from '../Channel/FindDoctor';
-import FindDate from '../Channel/FindDate';
-import FindPlace from '../Channel/FindPlace';
-import Confirm from '../Channel/Confirm';
+import FindDoctor from './FindDoctor';
+import FindDate from './FindDate';
+import FindPlace from '.FindPlace';
+import Confirm from './Confirm';
 const channelStyles = theme => ({
     card: {
         maxWidth: '600px',

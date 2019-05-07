@@ -5,11 +5,12 @@ import Button from '@material-ui/core/Button';
 
 
 const LoginSuccess = (response) => {
-    console.log(response);
+    console.log('success',response);
+    localStorage.setItem('isAdmin','true');
 }
 
 const LoginFailure = (response) => {
-    console.log(response.error);
+    console.log('error',response.error);
 }
 
 const Login = (props) => {
