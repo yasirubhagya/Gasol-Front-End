@@ -24,8 +24,8 @@ const {classes} = props
             aria-label="AccountType"
             name="accountType"
 
-            value={null}
-            onChange={null}
+            value={props.user.userType}
+            onChange={event=>props.handleSetUser({...props.user,userType:event.target.value})}
         >
             <FormControlLabel value="NU" control={<Radio />} label="I'm a Normal user" />
             <FormControlLabel value="CCU" control={<Radio />} label="I'm a channeling center" />

@@ -108,12 +108,12 @@ mutation ADD_FieldOfConsultant(
 
 const UPDATE_FieldOfConsultant = gql`
 mutation UPDATE_FieldOfConsultant(
-      $_id:ID!  
-      $name:String!,
+      $_id:ID!, 
+      $name:String!
     ) {
       updateConsultantType(
-        _id:$_id  
-        name:$name,
+        _id:$_id,  
+        name:$name
     ) {
     _id
     name
@@ -134,4 +134,29 @@ const DELETE_FieldOfConsultant = gql`
    }
 `;
 
-export { GET_FieldOfConsultant, Add_Doctor, GET_Doctors, DELETE_Doctor, UPDATE_Doctor, ADD_FieldOfConsultant,DELETE_FieldOfConsultant,UPDATE_FieldOfConsultant };
+const ADD_ChannelCenter = gql`
+      mutation ADD_ChannelCenter(
+        $userType: String!,
+        $regNo: String!,
+        $name: String!,
+        $owner: String!,
+        $address: String!,
+        $phoneNo: String!
+        ){
+          addChannelCenter(
+            userType:$userType,
+            regNo:$regNo,
+            name:$name,
+            owner:$owner,
+            address:$address,
+            phoneNo:$phoneNo
+          ){
+             _id
+             user{
+               _id
+             }
+          }
+      }
+`;
+
+export { GET_FieldOfConsultant, Add_Doctor, GET_Doctors, DELETE_Doctor, UPDATE_Doctor, ADD_FieldOfConsultant,DELETE_FieldOfConsultant,UPDATE_FieldOfConsultant,ADD_ChannelCenter };

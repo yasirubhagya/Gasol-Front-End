@@ -9,6 +9,7 @@ import lightGreen from '@material-ui/core/colors/lightGreen';
 import Login from '../Auth/Login';
 import '../App.css';
 import img from '../logo.png';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -78,9 +79,11 @@ const MenuBar = (props) => {
                     <div className={classes.grow}></div>
                     <div className={classes.actionSet}>
                     <Login className={classes.button}/>
+                    <NavLink style={{textDecoration : 'none'}} to='/SignUp'>
                     <Button variant="outlined" color="primary" className={classes.button}>
                         Register
                     </Button>
+                    </NavLink>
                     </div>
                     </MuiThemeProvider>
                 </Toolbar>

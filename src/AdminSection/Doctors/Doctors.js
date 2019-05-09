@@ -189,7 +189,7 @@ class Doctor extends Component {
                                                     htmlFor="outlined-age-simple"
                                                 >
                                                     Field Of Consulting
-                                    </InputLabel>
+                                                </InputLabel>
                                                 <Query query={GET_FieldOfConsultant}>
                                                     {({ loading, error, data }) => {
                                                         if (loading) return <MenuItem value=''>Loading...</MenuItem>;

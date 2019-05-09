@@ -140,7 +140,7 @@ class Dashboard extends React.Component {
             >
               channelme Admin panel
             </Typography>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={()=>localStorage.clear()}>
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -161,7 +161,7 @@ class Dashboard extends React.Component {
           </div>
           <Divider />
           <List>{mainListItems}</List>
-          {console.log(this)}
+          
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />

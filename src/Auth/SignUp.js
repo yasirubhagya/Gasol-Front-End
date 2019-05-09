@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import { Query, Mutation } from "react-apollo";
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Stepper from '@material-ui/core/Stepper';
@@ -22,7 +17,8 @@ import lightGreen from '@material-ui/core/colors/lightGreen';
 import SelectAccountType from './SelectAccountType';
 import SignInWithGoogle from './SignInWithGoogle';
 import Login from './Login';
-
+import ChannelCenterDetails from './ChannelCenterDetails';
+import { ADD_ChannelCenter } from '../AdminSection/Doctors/gql';
 const channelStyles = theme => ({
     card: {
         maxWidth: '600px',
@@ -47,22 +43,24 @@ const channelStyles = theme => ({
 
 
 function getSteps() {
-    return ['Select Account Type', 'SignIn with Google', 'Your Profile', 'Confirm Registration'];
+    return ['SignIn with Google', 'Select Account Type', 'Channel center Details', 'Confirm Registration'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, varthis) {
 
     switch (step) {
         case 0:
             return (
-                <SelectAccountType/>
+                <SignInWithGoogle user={varthis.state.user} handleSetUser={varthis.handleSetUser} />
+
             );
         case 1:
             return (
-                <SignInWithGoogle/>
+                <SelectAccountType user={varthis.state.user} handleSetUser={varthis.handleSetUser} />
             );
         case 2:
-            return ('');
+            return varthis.state.user.userType === 'CCU' ? <ChannelCenterDetails channelCenter={varthis.state.channelCenter} handleSetChannelCenter={varthis.handleSetChannelCenter} /> : ''
+
         case 3:
             return ('');
         default:
@@ -70,7 +68,7 @@ function getStepContent(step) {
     }
 }
 
-class Channel extends Component {
+class SignUp extends Component {
     theme = createMuiTheme({
         palette: {
             primary: { main: lightGreen[600] }, // Purple and green play nicely together.
@@ -80,7 +78,39 @@ class Channel extends Component {
     });
     state = {
         activeStep: 0,
+        user: {
+            googleId: '',
+            email: '',
+            name: '',
+            picture: '',
+            userType: ''
+        },
+        channelCenter: {
+            regNo: '',
+            name: '',
+            owner: '',
+            address: '',
+            phoneNo: '',
+        }
     };
+
+    handleSetUser = (user) => {
+        this.setState({
+            user: {
+                googleId: user.googleId,
+                email: user.email,
+                name: user.name,
+                picture: user.picture,
+                userType: user.userType
+            }
+        });
+    }
+
+    handleSetChannelCenter = (ChannelCenter) => {
+        this.setState({
+            channelCenter: { ...ChannelCenter }
+        });
+    }
 
     handleNext = () => {
         this.setState(state => ({
@@ -112,11 +142,7 @@ class Channel extends Component {
         return (
             <MuiThemeProvider theme={this.theme}>
                 <Card className={classes.card}>
-                    <CardHeader title={<Typography variant="h4" color="primary">SignUp To Our Service</Typography>} avatar={
-                        <Avatar aria-label="Recipe" className={classes.avatar}>
-                            R
-                        </Avatar>
-                    } />
+                    <CardHeader title={<Typography variant="h4" color="primary">SignUp To Our Service</Typography>} />
                     <Divider />
                     <CardContent className={classes.root}>
                         <Stepper activeStep={activeStep} orientation="vertical">
@@ -124,7 +150,7 @@ class Channel extends Component {
                                 <Step key={label}>
                                     <StepLabel>{label}</StepLabel>
                                     <StepContent>
-                                        <div>{getStepContent(index)}</div>
+                                        <div>{getStepContent(index, this)}</div>
                                         <div className={classes.actionsContainer}>
                                             <div>
                                                 <Button
@@ -133,39 +159,62 @@ class Channel extends Component {
                                                     className={classes.button}
                                                 >
                                                     Back
-                                        </Button>
-                                                <Button
-                                                    variant="contained"
-                                                    color="primary"
-                                                    onClick={this.handleNext}
-                                                    className={classes.button}
-                                                >
-                                                    {activeStep === steps.length - 1 ? 'Confirm' : 'Next'}
                                                 </Button>
+                                                {activeStep === steps.length - 1 ?
+                                                    <Mutation mutation={ADD_ChannelCenter} onError={(error)=>alert(error)} onCompleted={(data) => alert(data + " is added success fully")}>
+                                                        {(addChannelCenter, { loading, error, data }) => (
+                                                            <Button
+                                                                variant="contained"
+                                                                color="primary"
+                                                                onClick={() => {
+                                                                    addChannelCenter({
+                                                                        variables: {
+                                                                            userType: this.state.user.userType,
+                                                                            regNo: this.state.channelCenter.regNo,
+                                                                            name: this.state.channelCenter.name,
+                                                                            owner: this.state.channelCenter.owner,
+                                                                            address: this.state.channelCenter.address,
+                                                                            phoneNo: this.state.channelCenter.phoneNo
+                                                                        }
+                                                                    })
+                                                                        .catch(error => { console.log(error) })
+                                                                    this.handleNext()
+                                                                }}
+                                                                className={classes.button}
+                                                            >
+                                                                CONFIRM
+                                                            </Button>
+                                                        )}
+                                                    </Mutation>
+                                                    :
+                                                    <Button
+                                                        variant="contained"
+                                                        disabled={
+                                                            (activeStep === 0 && this.state.user.googleId === '')
+                                                            ||
+                                                            (activeStep === 1 && this.state.user.userType === '')
+                                                        }
+                                                        color="primary"
+                                                        onClick={this.handleNext}
+                                                        className={classes.button}
+                                                    >
+                                                        NEXT
+                                                    </Button>
+                                                }
+
                                             </div>
                                         </div>
                                     </StepContent>
                                 </Step>
                             ))}
                         </Stepper>
-                        {activeStep === steps.length && (
+                        {activeStep === steps.length  && (
                             <Paper square elevation={0} className={classes.resetContainer}>
                                 <Typography>All steps completed - you&apos;re finished with registration, SignIn with Google to continue </Typography>
                                 <Login />
                             </Paper>
                         )}
                     </CardContent>
-                    <Divider />
-                    <CardActions className={classes.actions} disableActionSpacing>
-                        <IconButton aria-label="Add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="Share">
-                            <ShareIcon />
-                        </IconButton>
-
-                    </CardActions>
-
                 </Card>
             </MuiThemeProvider>
 
@@ -175,4 +224,4 @@ class Channel extends Component {
 
 }
 
-export default withStyles(channelStyles)(Channel);
+export default withStyles(channelStyles)(SignUp);

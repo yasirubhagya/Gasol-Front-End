@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button';
 
 
 const LoginSuccess = (response) => {
-    console.log('success',response);
+    console.log('success',response.profileObj);
+    localStorage.setItem('authToken',response.tokenId)
     localStorage.setItem('isAdmin','true');
 }
 
