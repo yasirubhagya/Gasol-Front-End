@@ -13,7 +13,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import Paper from '@material-ui/core/Paper';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import lightGreen from '@material-ui/core/colors/lightGreen';
-import { GET_Doctors, DELETE_Doctor, Add_Doctor, UPDATE_Doctor, GET_FieldOfConsultant } from '../Doctors/gql'
+import { GET_Doctors, GET_Channels, ADD_Channels, DELETE_Channels,UPDATE_Channels } from '../Doctors/gql'
 import { Query, Mutation } from "react-apollo";
 import TextField from '@material-ui/core/TextField';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -80,15 +80,17 @@ const styles = theme => ({
 
 class Channels extends Component {
     state = {
-        Doctor: {
-            name: '',
-            slmcNo: '',
-            isConsultant: false,
-            fieldOfConsultingId: '',
-            createdById: ''
+        Channel: {
+            _id: '',
+            doctorId: '',
+            timeFrom: new Date(),
+            timeTo: new Date(),
+            chitLimit: '',
+            doctorFees: '',
+            channelFees: '',
+            tax: '',
+            status:''
         },
-        fieldOfConsulting: [],
-        userId: '5ca98800c9e29b2794447d29',
         editMode: false,
         labelWidth: 0
 
@@ -111,15 +113,42 @@ class Channels extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({ Doctor: { ...this.state.Doctor, fieldOfConsultingId: event.target.value } });
+        this.setState({ Channel: { ...this.state.Channel, doctorId: event.target.value } });
 
     };
+    handleStatusChange=(event)=>{
+        this.setState({ Channel: { ...this.state.Channel, status: event.target.value } });
+    }
+    handleDateChange = (date) => {
+        console.log(date);
+        let dt = new Date(date)
+        this.setState({
+            Channel: {
+                ...this.state.Channel, timeFrom: new Date(this.state.Channel.timeFrom).setFullYear(dt.getFullYear(), dt.getMonth(), dt.getDate()),
+                timeTo: new Date(this.state.Channel.timeTo).setFullYear(dt.getFullYear(), dt.getMonth(), dt.getDate())
+            }
+        });
 
-    handleNameChange = (event) => {
-        this.setState({ Doctor: { ...this.state.Doctor, name: event.target.value } });
     };
-    handleSLMCNoChange = (event) => {
-        this.setState({ Doctor: { ...this.state.Doctor, slmcNo: event.target.value } });
+    handleTimeFromChange = (time) => {
+        console.log(time);
+        this.setState({ Channel: { ...this.state.Channel, timeFrom: new Date(time) } });
+    };
+    handleTimeToChange = (time) => {
+        this.setState({ Channel: { ...this.state.Channel, timeTo: new Date(time) } });
+    };
+
+    handleChitLimitChange = (event) => {
+        this.setState({ Channel: { ...this.state.Channel, chitLimit: parseInt(event.target.value) } });
+    };
+    handleDoctorFeeChange = (event) => {
+        this.setState({ Channel: { ...this.state.Channel, doctorFees: parseFloat(event.target.value) } });
+    };
+    handleChannelFeeChange = (event) => {
+        this.setState({ Channel: { ...this.state.Channel, channelFees: parseFloat(event.target.value) } });
+    };
+    handleTaxChange = (event) => {
+        this.setState({ Channel: { ...this.state.Channel, tax: parseFloat(event.target.value) } });
     };
 
 
@@ -131,33 +160,26 @@ class Channels extends Component {
 
                 {
                     !this.state.editMode ?
-                        <Mutation mutation={Add_Doctor} onCompleted={(data) => alert(data.addDoctor.name + " is added success fully")}>
-                            {(addDoctor, { loading, error, data }) => (
+                        <Mutation mutation={ADD_Channels} onCompleted={(data) => alert(data + " is added success fully")}>
+                            {(addChannel, { loading, error, data }) => (
                                 <Paper className={classes.root} elevation={2}>
                                     <div className={classes.selectionRoot}>
                                         <form className={classes.formRoot} onSubmit={e => {
                                             e.preventDefault();
-                                            addDoctor({
+                                            addChannel({
                                                 variables: {
-                                                    name: this.state.Doctor.name,
-                                                    slmcNo: this.state.Doctor.slmcNo,
-                                                    isConsultant: this.state.Doctor.isConsultant,
-                                                    fieldOfConsultingId: this.state.Doctor.fieldOfConsultingId,
-                                                    createdById: this.state.userId,
+                                                    doctorId: this.state.Channel.doctorId,
+                                                    timeFrom: this.state.Channel.timeFrom.toISOString(),
+                                                    timeTo: this.state.Channel.timeTo.toISOString(),
+                                                    chitLimit: this.state.Channel.chitLimit,
+                                                    doctorFees: this.state.Channel.doctorFees,
+                                                    channelFees: this.state.Channel.channelFees,
+                                                    tax: this.state.Channel.tax
                                                 },
-                                                refetchQueries: [{ query: GET_Doctors }]
+                                                refetchQueries: [{ query: GET_Channels }]
 
                                             })
                                                 .catch(error => { console.log(error) });
-                                            this.setState({
-                                                Doctor: {
-                                                    name: '',
-                                                    slmcNo: '',
-                                                    isConsultant: false,
-                                                    fieldOfConsultingId: '',
-                                                    createdById: '',
-                                                }
-                                            });
 
                                         }} autoComplete="off">
                                             <FormControl className={classes.formControl} variant="outlined" color="primary">
@@ -169,13 +191,13 @@ class Channels extends Component {
                                                 >
                                                     Doctor
                                                 </InputLabel>
-                                                <Query query={GET_FieldOfConsultant}>
+                                                <Query query={GET_Doctors}>
                                                     {({ loading, error, data }) => {
                                                         if (loading) return <MenuItem value=''>Loading...</MenuItem>;
                                                         if (error) return <MenuItem value=''>Error...</MenuItem>;
                                                         return (
                                                             <Select
-                                                                value={this.state.Doctor.fieldOfConsultingId}
+                                                                value={this.state.Channel.doctorId}
                                                                 onChange={this.handleChange}
                                                                 input={
                                                                     <OutlinedInput
@@ -189,7 +211,7 @@ class Channels extends Component {
                                                                     <em>None</em>
                                                                 </MenuItem>
                                                                 {
-                                                                    data.consultantType.map(item => {
+                                                                    data.doctors.map(item => {
                                                                         return <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
                                                                     })
                                                                 }
@@ -204,7 +226,7 @@ class Channels extends Component {
                                                         clearable
                                                         variant="outlined"
                                                         label="Choose a Date"
-                                                        value={this.state.date}
+                                                        value={this.state.Channel.timeFrom}
                                                         onChange={this.handleDateChange}
                                                         format="dd/MM/yyyy"
                                                         mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
@@ -217,8 +239,8 @@ class Channels extends Component {
                                                         variant="outlined"
                                                         ampm={false}
                                                         label="From"
-                                                        value={this.state.selectedDate}
-                                                        onChange={this.handleDateChange}
+                                                        value={this.state.Channel.timeFrom}
+                                                        onChange={this.handleTimeFromChange}
                                                     />
                                                 </FormControl>
                                                 <FormControl className={classes.formControl} variant="outlined" color="primary">
@@ -227,8 +249,8 @@ class Channels extends Component {
                                                         variant="outlined"
                                                         ampm={false}
                                                         label="To"
-                                                        value={this.state.selectedDate}
-                                                        onChange={this.handleDateChange}
+                                                        value={this.state.Channel.timeTo}
+                                                        onChange={this.handleTimeToChange}
                                                     />
                                                 </FormControl>
 
@@ -242,8 +264,8 @@ class Channels extends Component {
                                                     variant="outlined"
                                                     color="primary"
                                                     fullWidth={true}
-                                                    value={this.state.Doctor.slmcNo}
-                                                    onChange={this.handleSLMCNoChange}
+                                                    value={this.state.Channel.chitLimit}
+                                                    onChange={this.handleChitLimitChange}
                                                 />
                                             </FormControl>
                                             <FormControl className={classes.formControl} variant="outlined" color="primary">
@@ -254,8 +276,8 @@ class Channels extends Component {
                                                     variant="outlined"
                                                     color="primary"
                                                     fullWidth={true}
-                                                    value={this.state.Doctor.slmcNo}
-                                                    onChange={this.handleSLMCNoChange}
+                                                    value={this.state.Channel.doctorFees}
+                                                    onChange={this.handleDoctorFeeChange}
                                                 />
                                             </FormControl>
                                             <FormControl className={classes.formControl} variant="outlined" color="primary">
@@ -266,8 +288,8 @@ class Channels extends Component {
                                                     variant="outlined"
                                                     color="primary"
                                                     fullWidth={true}
-                                                    value={this.state.Doctor.slmcNo}
-                                                    onChange={this.handleSLMCNoChange}
+                                                    value={this.state.Channel.channelFees}
+                                                    onChange={this.handleChannelFeeChange}
                                                 />
                                             </FormControl>
                                             <FormControl className={classes.formControl} variant="outlined" color="primary">
@@ -278,11 +300,11 @@ class Channels extends Component {
                                                     variant="outlined"
                                                     color="primary"
                                                     fullWidth={true}
-                                                    value={this.state.Doctor.slmcNo}
-                                                    onChange={this.handleSLMCNoChange}
+                                                    value={this.state.Channel.tax}
+                                                    onChange={this.handleTaxChange}
                                                 />
                                             </FormControl>
-                                            
+
                                             <Button type='submit' variant="outlined" color="primary" className={classes.formControl}>Add</Button>
                                         </form>
                                     </div>
@@ -295,50 +317,30 @@ class Channels extends Component {
 
                         </Mutation>
                         :
-                        <Mutation mutation={UPDATE_Doctor} onCompleted={(data) => { alert(data.updateDoctor.name + " is updated success fully") }}>
-                            {(updateDoctor, { loading, error, data }) => (
+                        <Mutation mutation={UPDATE_Channels} onCompleted={(data) => alert(data + " is added success fully")}>
+                            {(updateChannel, { loading, error, data }) => (
                                 <Paper className={classes.root} elevation={2}>
                                     <div className={classes.selectionRoot}>
                                         <form className={classes.formRoot} onSubmit={e => {
                                             e.preventDefault();
-                                            updateDoctor({
+                                            updateChannel({
                                                 variables: {
-                                                    _id: this.state.Doctor._id,
-                                                    name: this.state.Doctor.name,
-                                                    slmcNo: this.state.Doctor.slmcNo,
-                                                    isConsultant: this.state.Doctor.isConsultant,
-                                                    fieldOfConsultingId: this.state.Doctor.fieldOfConsultingId,
+                                                    _id:this.state.Channel._id,
+                                                    doctorId: this.state.Channel.doctorId,
+                                                    timeFrom: this.state.Channel.timeFrom.toISOString(),
+                                                    timeTo: this.state.Channel.timeTo.toISOString(),
+                                                    chitLimit: this.state.Channel.chitLimit,
+                                                    doctorFees: this.state.Channel.doctorFees,
+                                                    channelFees: this.state.Channel.channelFees,
+                                                    tax: this.state.Channel.tax,
+                                                    status:this.state.Channel.status,
                                                 },
-                                                refetchQueries: [{ query: GET_Doctors }]
+                                                refetchQueries: [{ query: GET_Channels }]
 
                                             })
                                                 .catch(error => { console.log(error) });
 
-
                                         }} autoComplete="off">
-                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
-                                                <TextField
-                                                    id="outlined-with-placeholder"
-                                                    label="Doctor's Name"
-                                                    placeholder="Enter Name"
-                                                    variant="outlined"
-                                                    fullWidth={true}
-                                                    value={this.state.Doctor.name}
-                                                    onChange={this.handleNameChange}
-                                                />
-                                            </FormControl>
-                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
-                                                <TextField
-                                                    id="outlined-with-placeholder"
-                                                    label="SLMC No"
-                                                    placeholder="Enter SLMC No"
-                                                    variant="outlined"
-                                                    color="primary"
-                                                    fullWidth={true}
-                                                    value={this.state.Doctor.slmcNo}
-                                                    onChange={this.handleSLMCNoChange}
-                                                />
-                                            </FormControl>
                                             <FormControl className={classes.formControl} variant="outlined" color="primary">
                                                 <InputLabel
                                                     ref={ref => {
@@ -346,15 +348,15 @@ class Channels extends Component {
                                                     }}
                                                     htmlFor="outlined-age-simple"
                                                 >
-                                                    Field Of Consulting
-                                    </InputLabel>
-                                                <Query query={GET_FieldOfConsultant}>
+                                                    Doctor
+                                                </InputLabel>
+                                                <Query query={GET_Doctors}>
                                                     {({ loading, error, data }) => {
                                                         if (loading) return <MenuItem value=''>Loading...</MenuItem>;
                                                         if (error) return <MenuItem value=''>Error...</MenuItem>;
                                                         return (
                                                             <Select
-                                                                value={this.state.Doctor.fieldOfConsultingId}
+                                                                value={this.state.Channel.doctorId}
                                                                 onChange={this.handleChange}
                                                                 input={
                                                                     <OutlinedInput
@@ -363,12 +365,13 @@ class Channels extends Component {
                                                                         id="outlined-age-simple"
                                                                     />
                                                                 }
+                                                                disabled={true}
                                                             >
                                                                 <MenuItem value="">
                                                                     <em>None</em>
                                                                 </MenuItem>
                                                                 {
-                                                                    data.consultantType.map(item => {
+                                                                    data.doctors.map(item => {
                                                                         return <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
                                                                     })
                                                                 }
@@ -376,63 +379,200 @@ class Channels extends Component {
                                                     }}
                                                 </Query>
                                             </FormControl>
+                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                    <InlineDatePicker
+                                                        keyboard
+                                                        clearable
+                                                        variant="outlined"
+                                                        label="Choose a Date"
+                                                        value={this.state.Channel.timeFrom}
+                                                        onChange={this.handleDateChange}
+                                                        format="dd/MM/yyyy"
+                                                        mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
 
-                                            <Button type='submit' variant="outlined" color="primary" className={classes.formControl}>Update</Button>
+                                                    />
+                                                </FormControl>
+                                                <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                    <InlineTimePicker
+                                                        clearable
+                                                        variant="outlined"
+                                                        ampm={false}
+                                                        label="From"
+                                                        value={this.state.Channel.timeFrom}
+                                                        onChange={this.handleTimeFromChange}
+                                                    />
+                                                </FormControl>
+                                                <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                    <InlineTimePicker
+                                                        clearable
+                                                        variant="outlined"
+                                                        ampm={false}
+                                                        label="To"
+                                                        value={this.state.Channel.timeTo}
+                                                        onChange={this.handleTimeToChange}
+                                                    />
+                                                </FormControl>
+
+                                            </MuiPickersUtilsProvider>
+
+                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                <TextField
+                                                    id="outlined-with-placeholder"
+                                                    label="Chit Limit"
+                                                    placeholder="Enter Chit Limit"
+                                                    variant="outlined"
+                                                    color="primary"
+                                                    fullWidth={true}
+                                                    value={this.state.Channel.chitLimit}
+                                                    onChange={this.handleChitLimitChange}
+                                                />
+                                            </FormControl>
+                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                <TextField
+                                                    id="outlined-with-placeholder"
+                                                    label="Doctor Fee"
+                                                    placeholder="Enter Doctor Fee"
+                                                    variant="outlined"
+                                                    color="primary"
+                                                    fullWidth={true}
+                                                    value={this.state.Channel.doctorFees}
+                                                    onChange={this.handleDoctorFeeChange}
+                                                />
+                                            </FormControl>
+                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                <TextField
+                                                    id="outlined-with-placeholder"
+                                                    label="Channel Fee"
+                                                    placeholder="Enter Channel Fee"
+                                                    variant="outlined"
+                                                    color="primary"
+                                                    fullWidth={true}
+                                                    value={this.state.Channel.channelFees}
+                                                    onChange={this.handleChannelFeeChange}
+                                                />
+                                            </FormControl>
+                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                <TextField
+                                                    id="outlined-with-placeholder"
+                                                    label="Tax"
+                                                    placeholder="Enter Tax"
+                                                    variant="outlined"
+                                                    color="primary"
+                                                    fullWidth={true}
+                                                    value={this.state.Channel.tax}
+                                                    onChange={this.handleTaxChange}
+                                                />
+                                            </FormControl>
+                                            <FormControl className={classes.formControl} variant="outlined" color="primary">
+                                                <InputLabel
+                                                    ref={ref => {
+                                                        this.InputLabelRef = ref;
+                                                    }}
+                                                    htmlFor="outlined-status"
+                                                >
+                                                    Status
+                                                </InputLabel>
+                                                <Select
+                                                    value={this.state.Channel.status}
+                                                    onChange={this.handleStatusChange}
+                                                    input={
+                                                        <OutlinedInput
+                                                            labelWidth={this.state.labelWidth}
+                                                            name="FieldOfConsulting"
+                                                            id="outlined-status"
+                                                        />
+                                                    }
+                                                >
+                                                    <MenuItem value="">
+                                                        <em>None</em>
+                                                    </MenuItem>
+
+                                                    <MenuItem key='active' value='active'>Active</MenuItem>
+                                                    <MenuItem key='closed' value='closed'>Closed</MenuItem>
+                                                </Select>
+                                            </FormControl>
+
+                                            <Button type='submit' variant="outlined" color="primary" className={classes.formControl}>UPDATE</Button>
                                         </form>
-                                        {loading && <p>Loading...</p>}
-                                        {error && <p>Error :{String(error).toString()}</p>}
                                     </div>
+                                    {loading && <p>Loading...</p>}
+                                    {error && <p>Error :{String(error).toString()}</p>}
+
+
                                 </Paper>
                             )}
 
                         </Mutation>
+
+
                 }
 
 
                 <Paper className={classes.viewroot}>
-                    <Query query={GET_Doctors}>
+                    <Query query={GET_Channels}>
 
                         {({ loading, error, data }) => {
                             if (loading) return "Loading...";
                             if (error) return `Error! ${error.message}`;
                             return (
+
                                 <Table className={classes.table}>
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Name</TableCell>
-                                            <TableCell align="right">SLMC NO</TableCell>
-                                            <TableCell align="right">Is a Consultant</TableCell>
-                                            <TableCell align="right">Field of Consulting</TableCell>
-                                            <TableCell align="right">Created By</TableCell>
+                                            <TableCell>Doctor</TableCell>
+                                            <TableCell align="right">Date</TableCell>
+                                            <TableCell align="right">From</TableCell>
+                                            <TableCell align="right">To</TableCell>
+                                            <TableCell align="right">Chit Limit</TableCell>
+                                            <TableCell align="right">Doctor Fee</TableCell>
+                                            <TableCell align="right">Channel Fee</TableCell>
+                                            <TableCell align="right">Tax</TableCell>
                                             <TableCell align="center">Edit/Delete</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {
-                                            data.doctors.map(doctor => (
-                                                <TableRow key={doctor._id}>
+                                            data.channel.map(channel => (
+
+                                                <TableRow key={channel._id}>
                                                     <TableCell component="th" scope="row">
-                                                        {doctor.name}
+                                                        {channel.doctor.name}
                                                     </TableCell>
-                                                    <TableCell align="right">{doctor.slmcNo}</TableCell>
-                                                    <TableCell align="right">{doctor.isConsultant ? <p>Yes</p> : <p>No</p>}</TableCell>
-                                                    <TableCell align="right">{doctor.fieldOfConsulting && doctor.fieldOfConsulting.name}</TableCell>
-                                                    <TableCell align="right">{doctor.createdBy && doctor.createdBy.name}</TableCell>
+                                                    <TableCell align="right">{new Date(parseInt(channel.timeFrom)).toLocaleDateString()}</TableCell>
+                                                    <TableCell align="right">{new Date(parseInt(channel.timeFrom)).toLocaleTimeString()}</TableCell>
+                                                    <TableCell align="right">{new Date(parseInt(channel.timeTo)).toLocaleTimeString()}</TableCell>
+                                                    <TableCell align="right">{channel.chitLimit}</TableCell>
+                                                    <TableCell align="right">{channel.doctorFees}</TableCell>
+                                                    <TableCell align="right">{channel.channelFees}</TableCell>
+                                                    <TableCell align="right">{channel.tax}</TableCell>
                                                     <TableCell align="right">
                                                         <Tooltip title="Edit">
                                                             <IconButton aria-label="Edit" onClick={() => {
-                                                                this.setState({ Doctor: { ...doctor, fieldOfConsultingId: doctor.fieldOfConsulting ? doctor.fieldOfConsulting._id : '' } });
+                                                                this.setState({
+                                                                    Channel: {
+                                                                        _id: channel._id,
+                                                                        doctorId: channel.doctor._id,
+                                                                        timeFrom: new Date(parseInt(channel.timeFrom)),
+                                                                        timeTo: new Date(parseInt(channel.timeTo)),
+                                                                        chitLimit: channel.chitLimit,
+                                                                        doctorFees: channel.doctorFees,
+                                                                        channelFees: channel.channelFees,
+                                                                        tax: channel.tax,
+                                                                        status: channel.status
+                                                                    }
+                                                                })
                                                                 this.setState({ editMode: true });
                                                             }
                                                             }>
                                                                 <CreateIcon />
                                                             </IconButton>
                                                         </Tooltip>
-                                                        <Mutation mutation={DELETE_Doctor}>
-                                                            {(deleteDoctor, { loading, error, data }) => (
+                                                        <Mutation mutation={DELETE_Channels}>
+                                                            {(deleteChannel, { loading, error, data }) => (
                                                                 <Tooltip title="Delete">
                                                                     <IconButton aria-label="Delete" onClick={() => {
-                                                                        deleteDoctor({ variables: { _id: doctor._id }, refetchQueries: [{ query: GET_Doctors }] })
+                                                                        deleteChannel({ variables: { _id: channel._id }, refetchQueries: [{ query: GET_Channels }] })
                                                                     }}>
                                                                         <DeleteIcon />
                                                                     </IconButton>
@@ -453,7 +593,7 @@ class Channels extends Component {
 
                     </Query>
                 </Paper>
-            </MuiThemeProvider>
+            </MuiThemeProvider >
         );
     }
 }

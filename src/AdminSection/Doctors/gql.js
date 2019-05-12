@@ -159,4 +159,174 @@ const ADD_ChannelCenter = gql`
       }
 `;
 
-export { GET_FieldOfConsultant, Add_Doctor, GET_Doctors, DELETE_Doctor, UPDATE_Doctor, ADD_FieldOfConsultant,DELETE_FieldOfConsultant,UPDATE_FieldOfConsultant,ADD_ChannelCenter };
+const GET_Channels = gql`
+    {
+      channel{
+      _id
+      doctor{
+        _id
+        name
+        fieldOfConsulting{
+          _id
+          name
+        }
+      }
+      channelCenter{
+        _id
+        name
+      }
+      timeFrom
+      timeTo
+      chitLimit
+      doctorFees
+      channelFees
+      tax
+      status
+      }
+    }
+`;
+
+const ADD_Channels = gql`
+mutation ADD_Channels(
+  $doctorId: ID
+  $timeFrom: String
+  $timeTo: String
+  $chitLimit: Int
+  $doctorFees: Float 
+  $channelFees: Float
+  $tax: Float
+){
+  addChannel(
+    doctorId:$doctorId,
+    timeFrom:$timeFrom ,
+    timeTo:$timeTo, 
+    chitLimit:$chitLimit,
+    doctorFees:$doctorFees, 
+    channelFees:$channelFees,
+    tax:$tax
+  ){
+        _id
+
+  }
+
+}
+`;
+
+
+const DELETE_Channels = gql`
+mutation DELETE_Channels(
+  $_id: ID
+){
+  deleteChannel(
+   _id:$_id
+  ){
+        _id
+  }
+
+}
+`;
+
+const UPDATE_Channels = gql`
+mutation UPDATE_Channels(
+  $_id:ID
+  $timeFrom: String
+  $timeTo: String
+  $chitLimit: Int
+  $doctorFees: Float 
+  $channelFees: Float
+  $tax: Float
+  $status:String
+)
+{
+  updateChannel(
+    _id:$_id,
+    timeFrom:$timeFrom ,
+    timeTo:$timeTo, 
+    chitLimit:$chitLimit,
+    doctorFees:$doctorFees, 
+    channelFees:$channelFees,
+    tax:$tax,
+    status:$status
+  ){
+        _id
+  }
+}
+
+`;
+
+const ADD_City = gql`
+mutation ADD_City(
+  $name: String
+){
+  addCity(
+    name:$name
+  ){
+        _id
+        name
+  }
+
+}
+`;
+
+const UPDATE_City = gql`
+mutation UPDATE_City(
+  $_id:ID
+  $name: String
+){
+  updateCity(
+    _id:$_id
+    name:$name
+  ){
+        _id
+        name
+  }
+
+}
+`;
+
+const DELETE_City = gql`
+mutation DELETE_City(
+  $_id: ID
+){
+  deleteCity(
+    _id:$_id
+  ){
+        _id
+        name
+  }
+
+}
+`;
+
+const GET_Cities=gql`
+   {
+     cities{
+       _id
+       name
+       createdBy{
+         _id
+         name
+       }
+     }
+   }
+`;
+
+export {
+  GET_FieldOfConsultant,
+  Add_Doctor,
+  GET_Doctors,
+  DELETE_Doctor,
+  UPDATE_Doctor,
+  ADD_FieldOfConsultant,
+  DELETE_FieldOfConsultant,
+  UPDATE_FieldOfConsultant,
+  ADD_ChannelCenter,
+  GET_Channels,
+  ADD_Channels,
+  DELETE_Channels,
+  UPDATE_Channels,
+  ADD_City,
+  GET_Cities,
+  DELETE_City,
+  UPDATE_City
+};

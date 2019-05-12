@@ -36,6 +36,14 @@ export const mainListItems = (
         <ListItemText primary="Field of Consulting" />
       </ListItem>
     </NavLink>
+    <NavLink style={{textDecoration : 'none'}} to='/City'>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="City" />
+      </ListItem>
+    </NavLink>
     <NavLink style={{textDecoration : 'none'}} to='/Channels'>
       <ListItem button>
         <ListItemIcon>
