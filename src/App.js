@@ -5,9 +5,8 @@ import Channel2 from './PublicSection/Channel2/Channel2';
 import Footer from './Layout/Footer';
 import SignUp from './Auth/SignUp';
 import './App.css';
-import { Divider } from '@material-ui/core';
 import MainAdminPannel from './AdminSection/Main';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch ,Redirect } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom'
 class App extends Component {
 
@@ -28,6 +27,8 @@ class App extends Component {
                 <Switch>
                     <Route path="/" exact component={Channel2} />
                     <Route path="/SignUp" exact component={SignUp} />
+                    <Redirect from="/"  to="/" />
+                    <Route component={Channel2} />
                 </Switch>
                 
                   

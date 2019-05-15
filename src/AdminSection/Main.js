@@ -5,6 +5,7 @@ import Doctors from './Doctors/Doctors';
 import ConsultantType from './ConsultantType/ConsultantType';
 import Channels from './Channels/Channels';
 import City from './City/City';
+import DoctorsOfChannelCenter from './DoctorsOfChannelCenter/DoctorsOfChannelCenter';
 class App extends Component {
 
     
@@ -16,6 +17,7 @@ class App extends Component {
                     <Route path="/" exact component={null} />
                     <Route path="/Reports" exact component={null} />
                     <Route path="/Doctors" component={Doctors} />
+                    <Route path="/DoctorsOfChannelCenter" component={DoctorsOfChannelCenter} />
                     <Route path="/ConsultantType" component={ConsultantType} />
                     <Route path="/City" component={City} />
                     <Route path="/Channels" component={Channels} />

@@ -13,7 +13,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import Paper from '@material-ui/core/Paper';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import lightGreen from '@material-ui/core/colors/lightGreen';
-import {GET_Doctors,DELETE_Doctor,Add_Doctor,UPDATE_Doctor,GET_FieldOfConsultant} from './gql'
+import {GET_Doctors,DELETE_Doctor,Add_Doctor,UPDATE_Doctor,GET_FieldOfConsultant} from '../../gql'
 import { Query, Mutation } from "react-apollo";
 import TextField from '@material-ui/core/TextField';
 import OutlinedInput from '@material-ui/core/OutlinedInput';

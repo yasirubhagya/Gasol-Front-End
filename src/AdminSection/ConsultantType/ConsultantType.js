@@ -20,7 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
-import { ADD_FieldOfConsultant, UPDATE_FieldOfConsultant, DELETE_FieldOfConsultant, GET_FieldOfConsultant } from '../Doctors/gql';
+import { ADD_FieldOfConsultant, UPDATE_FieldOfConsultant, DELETE_FieldOfConsultant, GET_FieldOfConsultant } from '../../gql';
 
 
 const ConsultantTypeStyles = theme => ({

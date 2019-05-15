@@ -134,6 +134,36 @@ const DELETE_FieldOfConsultant = gql`
    }
 `;
 
+const GET_ChannelCenters = gql`
+{
+  channelCenters{
+    _id
+    name
+  }
+}
+`;
+
+const GET_ChannelCenter = gql`
+{
+  channelCenter{
+    _id
+    regNo
+    name
+    owner
+    address
+    phoneNo
+    user{
+      _id
+      name
+    }
+    doctors{
+       _id
+      name
+    }
+  }
+}
+`;
+
 const ADD_ChannelCenter = gql`
       mutation ADD_ChannelCenter(
         $userType: String!,
@@ -298,7 +328,7 @@ mutation DELETE_City(
 }
 `;
 
-const GET_Cities=gql`
+const GET_Cities = gql`
    {
      cities{
        _id
@@ -311,6 +341,76 @@ const GET_Cities=gql`
    }
 `;
 
+const SEARCH_Channels = gql`
+query SEARCH_Channels($doctorId: ID!,$consultantTypeId: ID!,$channelCenterId: ID!,$cityId: ID!,$date: String!,) {
+  searchChannels(
+    doctorId: $doctorId,
+    consultantTypeId:$consultantTypeId,
+    channelCenterId: $channelCenterId,
+    CityId: $cityId,
+    date: $date
+    ){
+      _id
+      doctor{
+           _id
+           name
+           fieldOfConsulting{
+             _id
+             name
+           }
+      }
+      channelCenter{
+                 _id
+                 name
+      }
+      timeFrom
+      timeTo
+      chitLimit
+      doctorFees
+      channelFees
+      tax
+      status
+      channelChit{
+          _id
+      }
+  }
+}
+`;
+
+const ADD_DoctorTOChannelCenter = gql`
+mutation ADD_DoctorTOChannelCenter(
+  $doctorId: ID
+){
+  addDoctorToChannelCenter(
+    doctorId:$doctorId
+  ){    
+        _id
+        doctors{
+          _id
+          name
+        }
+  }
+
+}
+`;
+
+const REMOVE_DoctorFromannelCenter = gql`
+mutation REMOVE_DoctorFromannelCenter(
+  $doctorId: ID
+){
+  removeDoctorFromChannelCenter(
+    doctorId:$doctorId
+  ){    
+        _id
+        doctors{
+          _id
+          name
+        }
+  }
+
+}
+`;
+
 export {
   GET_FieldOfConsultant,
   Add_Doctor,
@@ -320,13 +420,18 @@ export {
   ADD_FieldOfConsultant,
   DELETE_FieldOfConsultant,
   UPDATE_FieldOfConsultant,
+  GET_ChannelCenters,
   ADD_ChannelCenter,
   GET_Channels,
+  SEARCH_Channels,
   ADD_Channels,
   DELETE_Channels,
   UPDATE_Channels,
   ADD_City,
   GET_Cities,
   DELETE_City,
-  UPDATE_City
+  UPDATE_City,
+  ADD_DoctorTOChannelCenter,
+  GET_ChannelCenter,
+  REMOVE_DoctorFromannelCenter
 };

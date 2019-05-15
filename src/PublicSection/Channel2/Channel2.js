@@ -1,23 +1,21 @@
-import React, { Component, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import lightGreen from '@material-ui/core/colors/lightGreen';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Divider from '@material-ui/core/Divider';
 import { Button } from '@material-ui/core';
 import { InlineDatePicker, MuiPickersUtilsProvider } from "material-ui-pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import AdvancedGridList from './ChannelContent';
+import { GET_Doctors, GET_FieldOfConsultant, GET_Cities, GET_ChannelCenters, SEARCH_Channels } from '../../gql';
+import { Query, ApolloConsumer } from 'react-apollo';
+import Select from './SelectComponent';
+
+
+
+
 
 const Channel2Styles = theme => ({
     root: {
@@ -37,7 +35,7 @@ const Channel2Styles = theme => ({
     },
     formControl: {
         margin: theme.spacing.unit,
-        height:'54px',
+        height:'73px',
         width: '100%',
         [theme.breakpoints.up('sm')]: {
             width: '46%',
@@ -52,7 +50,18 @@ const Channel2Styles = theme => ({
     },
     button: {
         margin: theme.spacing.unit,
-        height: '55px'
+        height:'73px',
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '46%',
+        },
+
+        [theme.breakpoints.up('md')]: {
+            width: '30%',
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: '15%',
+        },
     },
     selectEmpty: {
         marginTop: theme.spacing.unit * 2,
@@ -61,7 +70,7 @@ const Channel2Styles = theme => ({
 });
 
 class Channel2 extends Component {
-
+    doctorlabelWidth = 0;
     theme = createMuiTheme({
         palette: {
             primary: { main: lightGreen[600] }, // Purple and green play nicely together.
@@ -71,119 +80,152 @@ class Channel2 extends Component {
     });
 
     state = {
-        selections: [{
-            value: '',
-            name: 'Doctor',
-            labelWidth: 0,
-            InputLabelRef: ''
+
+        searchParams: {
+            doctorId: '',
+            consultantTypeId: '',
+            channelCenterId: '',
+            cityId: '',
+            date: new Date()
         },
-        {
-            value: '',
-            name: 'Specialization',
-            labelWidth: 0,
-            InputLabelRef: ''
-        },
-        {
-            value: '',
-            name: 'Channling Center',
-            labelWidth: 0,
-            InputLabelRef: ''
-        },
-        {
-            value: '',
-            name: 'City',
-            labelWidth: 0,
-            InputLabelRef: ''
-        }],
-        date: new Date()
+        channels: []
+
     };
 
-    componentDidMount() {
-        this.setState({
-            selections: [
-                { ...this.state.selections[0], labelWidth: ReactDOM.findDOMNode(this.state.selections[0].InputLabelRef).offsetWidth },
-                { ...this.state.selections[1], labelWidth: ReactDOM.findDOMNode(this.state.selections[1].InputLabelRef).offsetWidth },
-                { ...this.state.selections[2], labelWidth: ReactDOM.findDOMNode(this.state.selections[2].InputLabelRef).offsetWidth },
-                { ...this.state.selections[3], labelWidth: ReactDOM.findDOMNode(this.state.selections[3].InputLabelRef).offsetWidth }
-            ]
-        });
+    handleDoctorChange = (e) => {
+        this.setState({ searchParams: { ...this.state.searchParams, doctorId:e? e.value :'' } });
     }
 
+    handleConsultantTypeChange = (e) => {
+        this.setState({ searchParams: { ...this.state.searchParams, consultantTypeId: e? e.value :'' } });
+    }
+
+    handleChannelCenterChange = (e) => {
+        this.setState({ searchParams: { ...this.state.searchParams, channelCenterId: e? e.value :''} });
+    }
+    handleCityChange = (e) => {
+        this.setState({ searchParams: { ...this.state.searchParams, cityId: e? e.value :'' } });
+    }
     handleDateChange = (date) => {
-        this.setState({ date: date });
+        this.setState({ searchParams: { ...this.state.searchParams, date: date } });
     }
-
-    handleChange = (event, index) => {
-        const sel = [...this.state.selections];
-        const obj = { ...this.state.selections[index], value: event.target.value };
-
-        sel.splice(index, 1, obj);
-        console.log(sel);
-        this.setState({ selections: sel });
-    };
 
     render() {
 
         const { classes } = this.props;
-        //const [selectedDate, handleDateChange] = useState(new Date());
+
         return (
             <MuiThemeProvider theme={this.theme}>
                 <Paper className={classes.root} elevation={2}>
                     <div className={classes.selectionRoot}>
                         <form className={classes.formRoot} autoComplete="off">
-
-                            {this.state.selections.map((Item, index) => (
-                                <FormControl key={index} variant="outlined" className={classes.formControl}>
-                                    <InputLabel
-                                        ref={ref => {
-                                            this.state.selections[index].InputLabelRef = ref;
-                                        }}
-                                        htmlFor="outlined-age-simple"
-                                    >
-                                        {Item.name}
-                                    </InputLabel>
-                                    <Select
-                                        value={Item.value}
-                                        onChange={(event) => this.handleChange(event, index)}
-                                        input={
-                                            <OutlinedInput
-                                                labelWidth={Item.labelWidth}
-                                                name={Item.name}
-                                                id="outlined-age-simple"
-                                            />
-                                        }
-                                    >
-                                        <MenuItem value="">
-                                            <em>Any</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-                            ))}
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <Query query={GET_Doctors}>
+                                    {({ loading, error, data }) => {
+                                        if (loading) return <p>Loading...</p>;
+                                        if (error) return <MenuItem value=''>Error...</MenuItem>;
+                                        let options = data.doctors.map(item => ({
+                                            value: item._id,
+                                            label: item.name,
+                                        }));
+                                        return (
+                                            <Select placeholder='Doctor' options={options} handleChange={this.handleDoctorChange} />
+                                        )
+                                    }}
+                                </Query>
+                            </FormControl>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <Query query={GET_FieldOfConsultant}>
+                                    {({ loading, error, data }) => {
+                                        if (loading) return <p>Loading...</p>;
+                                        if (error) return <MenuItem value=''>Error...</MenuItem>;
+                                        let options = data.consultantType.map(item => ({
+                                            value: item._id,
+                                            label: item.name,
+                                        }));
+                                        return (
+                                            <Select placeholder='Specialisation' options={options} handleChange={this.handleConsultantTypeChange} />
+                                        )
+                                    }}
+                                </Query>
+                            </FormControl>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <Query query={GET_ChannelCenters}>
+                                    {({ loading, error, data }) => {
+                                        if (loading) return <p>Loading...</p>;
+                                        if (error) return <MenuItem value=''>Error...</MenuItem>;
+                                        let options = data.channelCenters.map(item => ({
+                                            value: item._id,
+                                            label: item.name,
+                                        }));
+                                        return (
+                                            <Select placeholder='Channel Center' options={options} handleChange={this.handleChannelCenterChange} />
+                                        )
+                                    }}
+                                </Query>
+                            </FormControl>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <Query query={GET_Cities}>
+                                    {({ loading, error, data }) => {
+                                        if (loading) return <p>Loading...</p>;
+                                        if (error) return <MenuItem value=''>Error...</MenuItem>;
+                                        let options = data.cities.map(item => ({
+                                            value: item._id,
+                                            label: item.name,
+                                        }));
+                                        return (
+                                            <Select placeholder='City' options={options} handleChange={this.handleCityChange} />
+                                        )
+                                    }}
+                                </Query>
+                            </FormControl>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <InlineDatePicker
                                     keyboard
                                     clearable
                                     variant="outlined"
-                                    label="Choose a Date"
-                                    value={this.state.date}
+
+                                    value={this.state.searchParams.date}
                                     onChange={this.handleDateChange}
                                     format="dd/MM/yyyy"
                                     mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
                                     className={classes.formControl}
                                 />
                             </MuiPickersUtilsProvider>
-
-                            <Button variant="outlined" color="primary" className={classes.formControl}>Search</Button>
+                            
+                                <ApolloConsumer>
+                                    {client => (
+                                        
+                                            <Button variant="outlined" color="primary" fullWidth className={classes.formControl}
+                                                onClick={async () => {
+                                                    const { data } = await client.query({
+                                                        query: SEARCH_Channels,
+                                                        variables: {
+                                                            doctorId: this.state.searchParams.doctorId,
+                                                            consultantTypeId:this.state.searchParams.consultantTypeId,
+                                                            channelCenterId:this.state.searchParams.channelCenterId,
+                                                            cityId:this.state.searchParams.cityId,
+                                                            date: this.state.searchParams.date
+                                                        }
+                                                    });
+                                                   
+                                                    this.setState({ channels: data.searchChannels });
+                                                    console.log(this.state.channels);
+                                                }
+                                                }
+                                            >
+                                                Search
+                                        </Button>
+                                        
+                                    )}
+                                </ApolloConsumer>
+                            
 
                         </form>
                     </div>
 
                 </Paper>
-                <AdvancedGridList/>
+                {<AdvancedGridList data ={this.state.channels}/>}
             </MuiThemeProvider>
         );
     }

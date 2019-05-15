@@ -20,7 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
-import { ADD_City,GET_Cities,DELETE_City,UPDATE_City} from '../Doctors/gql';
+import { ADD_City,GET_Cities,DELETE_City,UPDATE_City} from '../../gql';
 
 
 const CityStyles = theme => ({

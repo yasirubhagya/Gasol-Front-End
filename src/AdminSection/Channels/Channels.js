@@ -13,7 +13,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import Paper from '@material-ui/core/Paper';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import lightGreen from '@material-ui/core/colors/lightGreen';
-import { GET_Doctors, GET_Channels, ADD_Channels, DELETE_Channels,UPDATE_Channels } from '../Doctors/gql'
+import { GET_Doctors, GET_Channels, ADD_Channels, DELETE_Channels,UPDATE_Channels } from '../../gql';
 import { Query, Mutation } from "react-apollo";
 import TextField from '@material-ui/core/TextField';
 import OutlinedInput from '@material-ui/core/OutlinedInput';

@@ -28,6 +28,14 @@ export const mainListItems = (
         <ListItemText primary="Doctors" />
       </ListItem>
     </NavLink>
+    <NavLink style={{textDecoration : 'none'}} to='/DoctorsOfChannelCenter'>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Doctors Of CC" />
+      </ListItem>
+    </NavLink>
     <NavLink style={{textDecoration : 'none'}} to='/ConsultantType'>
       <ListItem button>
         <ListItemIcon>

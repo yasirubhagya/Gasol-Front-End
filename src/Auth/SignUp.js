@@ -18,7 +18,7 @@ import SelectAccountType from './SelectAccountType';
 import SignInWithGoogle from './SignInWithGoogle';
 import Login from './Login';
 import ChannelCenterDetails from './ChannelCenterDetails';
-import { ADD_ChannelCenter } from '../AdminSection/Doctors/gql';
+import { ADD_ChannelCenter } from '../gql';
 const channelStyles = theme => ({
     card: {
         maxWidth: '600px',
