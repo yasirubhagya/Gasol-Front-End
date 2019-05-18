@@ -16,7 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MenuItem from '@material-ui/core/MenuItem';
 import { REMOVE_DoctorFromannelCenter,ADD_DoctorTOChannelCenter, GET_Doctors, GET_ChannelCenter } from '../../gql';
-import Select from '../../PublicSection/Channel2/SelectComponent';
+import Select from './SelectComponent';
 
 const Styles = theme => ({
     root: {

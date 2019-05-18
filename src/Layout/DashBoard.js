@@ -10,12 +10,11 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
-
+import LogoutIcon from '@material-ui/icons/AccountCircle'
+import { mainListItems} from './listItems';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -140,11 +139,11 @@ class Dashboard extends React.Component {
             >
               channelme Admin panel
             </Typography>
-            <IconButton color="inherit" onClick={()=>localStorage.clear()}>
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+            <NavLink style={{ textDecoration: 'none', color:'inherit' }} to='/Logout'>
+            <IconButton color="inherit">
+                <LogoutIcon />
             </IconButton>
+            </NavLink>
           </Toolbar>
         </AppBar>
         <Drawer

@@ -411,6 +411,19 @@ mutation REMOVE_DoctorFromannelCenter(
 }
 `;
 
+const LOGIN = gql`
+{
+  logInCCUser{
+    _id
+    googleId
+    email
+    name
+    picture
+    userType
+  }
+}
+`;
+
 export {
   GET_FieldOfConsultant,
   Add_Doctor,
@@ -433,5 +446,6 @@ export {
   UPDATE_City,
   ADD_DoctorTOChannelCenter,
   GET_ChannelCenter,
-  REMOVE_DoctorFromannelCenter
+  REMOVE_DoctorFromannelCenter,
+  LOGIN
 };

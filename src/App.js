@@ -1,42 +1,32 @@
 import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import MenuBar from './Layout/AppBar';
-import Channel2 from './PublicSection/Channel2/Channel2';
-import Footer from './Layout/Footer';
-import SignUp from './Auth/SignUp';
 import './App.css';
 import MainAdminPannel from './AdminSection/Main';
+import Login from './Auth/Login';
 import { Route, Switch ,Redirect } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom'
 class App extends Component {
 
- 
+  state={
+    user:localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')):null
+  }
+
+  setUserHandle=(user)=>{
+    this.setState({user:user});
+  }
    
   render() {
     
     return (
       <BrowserRouter>
-        { localStorage.getItem('isAdmin') === 'true'?
-          (
-            <MainAdminPannel />
-          ) : (
-              <React.Fragment>
-                <CssBaseline />
-                <MenuBar />
-                <div className="App">
-                <Switch>
-                    <Route path="/" exact component={Channel2} />
-                    <Route path="/SignUp" exact component={SignUp} />
-                    <Redirect from="/"  to="/" />
-                    <Route component={Channel2} />
-                </Switch>
-                
-                  
-                </div>
-                <Footer />
-              </React.Fragment>
-            )
-        }
+      {this.state.user?
+        <MainAdminPannel setUserHandle={this.setUserHandle}/>
+        
+        :
+        <Login setUserHandle={this.setUserHandle}/>
+      }
+      
+            
       </BrowserRouter>
     );
 
