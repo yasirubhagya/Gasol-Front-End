@@ -336,9 +336,7 @@ class Doctor extends Component {
                                         <TableRow>
                                             <TableCell>Name</TableCell>
                                             <TableCell align="right">SLMC NO</TableCell>
-                                            <TableCell align="right">Is a Consultant</TableCell>
                                             <TableCell align="right">Field of Consulting</TableCell>
-                                            <TableCell align="right">Created By</TableCell>
                                             <TableCell align="center">Edit/Delete</TableCell>
                                         </TableRow>
                                     </TableHead>
@@ -350,9 +348,7 @@ class Doctor extends Component {
                                                 {doctor.name}
                                             </TableCell>
                                             <TableCell align="right">{doctor.slmcNo}</TableCell>
-                                            <TableCell align="right">{doctor.isConsultant ? <p>Yes</p> : <p>No</p>}</TableCell>
                                             <TableCell align="right">{doctor.fieldOfConsulting && doctor.fieldOfConsulting.name}</TableCell>
-                                            <TableCell align="right">{doctor.createdBy && doctor.createdBy.name}</TableCell>
                                             <TableCell align="right">
                                                 <Tooltip title="Edit">
                                                     <IconButton aria-label="Edit" onClick={()=>{

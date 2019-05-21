@@ -124,7 +124,7 @@ class ConsultantType extends Component {
                                         <FormControl className={classes.formControl} variant="outlined" color="primary">
                                             <TextField
                                                 id="outlined-with-placeholder"
-                                                label="Doctor's Name"
+                                                label="Field Of Consulting"
                                                 placeholder="Enter Name"
                                                 variant="outlined"
                                                 fullWidth={true}
@@ -200,7 +200,6 @@ class ConsultantType extends Component {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Name</TableCell>
-                                            <TableCell align="right">Created By</TableCell>
                                             <TableCell align="center">Edit/Delete</TableCell>
                                         </TableRow>
                                     </TableHead>
@@ -211,8 +210,7 @@ class ConsultantType extends Component {
                                                     <TableCell component="th" scope="row">
                                                         {consultantType.name}
                                                     </TableCell>
-                                                    <TableCell align="right">{consultantType.createdBy && consultantType.createdBy.name}</TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         <Tooltip title="Edit">
                                                             <IconButton aria-label="Edit" onClick={() => {
                                                                 this.setState({ ConsultantType: { ...consultantType } });

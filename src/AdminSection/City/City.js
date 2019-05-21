@@ -193,7 +193,6 @@ class City extends Component {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Name</TableCell>
-                                            <TableCell align="right">Created By</TableCell>
                                             <TableCell align="center">Edit/Delete</TableCell>
                                         </TableRow>
                                     </TableHead>
@@ -204,8 +203,7 @@ class City extends Component {
                                                     <TableCell component="th" scope="row">
                                                         {city.name}
                                                     </TableCell>
-                                                    <TableCell align="right">{city.createdBy && city.createdBy.name}</TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         <Tooltip title="Edit">
                                                             <IconButton aria-label="Edit" onClick={() => {
                                                                 this.setState({ City: { ...city } });

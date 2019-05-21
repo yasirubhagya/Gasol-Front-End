@@ -120,14 +120,20 @@ class Channels extends Component {
         this.setState({ Channel: { ...this.state.Channel, status: event.target.value } });
     }
     handleDateChange = (date) => {
-        console.log(date);
-        let dt = new Date(date)
+       
+        let dt = new Date(date);
+        let dtF =new Date(this.state.Channel.timeFrom.toISOString())
+        dtF.setFullYear(dt.getFullYear(), dt.getMonth(), dt.getDate());
+        let dtT =new Date(this.state.Channel.timeTo.toISOString())
+        dtT.setFullYear(dt.getFullYear(), dt.getMonth(), dt.getDate());
+       
         this.setState({
             Channel: {
-                ...this.state.Channel, timeFrom: new Date(this.state.Channel.timeFrom).setFullYear(dt.getFullYear(), dt.getMonth(), dt.getDate()),
-                timeTo: new Date(this.state.Channel.timeTo).setFullYear(dt.getFullYear(), dt.getMonth(), dt.getDate())
+                ...this.state.Channel, timeFrom: new Date(dtF.toISOString()),timeTo: new Date(dtT.toISOString())
             }
         });
+
+        console.log(this.state.Channel.timeFrom);
 
     };
     handleTimeFromChange = (time) => {
